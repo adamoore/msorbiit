@@ -42,6 +42,7 @@
             font-size: 16px;
             border-radius: 5px;
             background-color: #17C3B2;
+            font-family: 'Sofadi One', system-ui;
         }
         .navigation {
             margin-bottom: 20px;
@@ -53,18 +54,19 @@
             border-radius: 5px;
             background-color: #133667;
             color: #FFFC99;
+            font-family: 'Sofadi One', system-ui;
         }
     </style>
 </head>
 <body>
     <h1>Tapahtumakalenteri</h1>
     <div class="buttons">
-        <button onclick="setMode('ms_orbiit')">ms orbiit</button>
-        <button onclick="setMode('redsven_ink')">redsven's ink ajanvaraus</button>
+        <button onclick="setMode('ms_orbiit')">M/S Orbiit tapahtumat</button>
+        <button onclick="setMode('redsven_ink')">Redsven's Ink Ajanvaraus</button>
     </div>
     <div class="navigation">
-        <button onclick="changeMonth(-1)">Edellinen kuukausi</button>
-        <button onclick="changeMonth(1)">Seuraava kuukausi</button>
+        <button onclick="changeMonth(-1)">Edellinen</button>
+        <button onclick="changeMonth(1)">Seuraava</button>
     </div>
     <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] == true): ?>
     <form action="kalenteri.php" method="post">

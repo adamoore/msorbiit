@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MS-Orbiit</title>
+    <title>M/S Orbiit</title>
     <link rel="stylesheet" href="site.css">
     <!-- Navin fontti -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,13 +32,17 @@
                 <li><a href="etusivu.php">Etusivu</a></li>
                 <li><a href="historia.php">Historia</a></li>
                 <li><a href="laivantiedot.php">Laivan tiedot</a></li>
-                <li><a href="ms-orbiit-galleria.php">M/S Orbiit Galleria</a></li>
-                <li><a href="redsvensink.php">Redsven's Ink Tatuointistudio</a></li>
-                <li><a href="kalenteri.php">Ajanvaraus</a></li>
-                <li><a href="galleriaink.php">Redsven's Ink Galleria</a></li>
+                <li><a href="galleriaorb.php">M/S Orbiit Galleria</a></li>
                 <li><a href="liityjaseneksi.php">Matkassa mukana</a></li>
                 <li><a href="verkkokauppa.php">Verkkokauppa</a></li>
                 <li><a href="vieraskirja.php">Vieraskirja</a></li>
+            </ul>
+        </nav>
+        <nav>
+            <ul>
+                <li><a href="redsvensink.php">Redsven's Ink Tatuointistudio</a></li>
+                <li><a href="kalenteri.php">Ajanvaraus</a></li>
+                <li><a href="galleriaink.php">Redsven's Ink Galleria</a></li>
                 <li><a href="rekisterointi.php">Kirjaudu/Rekisteröidy</a></li>
             </ul>
         </nav>
