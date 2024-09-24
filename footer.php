@@ -1,0 +1,23 @@
+<br>
+<div class="footer-icons">
+    
+    <a href="https://www.youtube.com/@msorbiit" target="_blank"a>
+        <img
+        src="msorbiitkuvat/youtubepyöreä.png" alt="youtube" />
+    </a>
+
+    <a href="https://www.instagram.com/ms_orbiit/" target="_blank"a>
+        <img
+        src="msorbiitkuvat/instagrampyöreä.png" alt="instagram" />
+   </a>
+   
+    <a href="https://www.tiktok.com/@annikaredsven?lang=fi-FI" target="_blank">
+        <img
+        src="msorbiitkuvat/tiktokpyöreä.png" alt="tiktok" />
+    </a>
+</div>
+<br>    
+<footer>
+        <p>&copy; 2024 MS-Orbiit</p>
+        <p><?php echo date('d.m.Y H:i:s'); ?></p>
+</footer>
