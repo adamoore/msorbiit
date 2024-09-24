@@ -4,17 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalenterii</title>
+    <title>Kalenteri</title>
     <style>
         .calendar {
-            display: grid;
+            display: inline-grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 10px;
+            background-color: #133667;
+            color: #DD992C;
+            margin: 0 auto;
         }
         .day {
             border: 1px solid #ccc;
             padding: 10px;
             text-align: center;
+            background-color: #D3F6DB;
+            color: #133667; 
         }
         .tapahtumat, .holiday, .vapaat_ajat {
             background-color: #f0f0f0;
@@ -27,10 +32,40 @@
         .vapaat_ajat {
             background-color: #90EE90;
         }
+        
+        .buttons {
+            margin-bottom: 20px;
+        }
+        .buttons button {
+            margin-right: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            background-color: #17C3B2;
+        }
+        .navigation {
+            margin-bottom: 20px;
+        }
+        .navigation button {
+            margin-right: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            background-color: #133667;
+            color: #FFFC99;
+        }
     </style>
 </head>
 <body>
     <h1>Tapahtumakalenteri</h1>
+    <div class="buttons">
+        <button onclick="setMode('ms_orbiit')">ms orbiit</button>
+        <button onclick="setMode('redsven_ink')">redsven's ink ajanvaraus</button>
+    </div>
+    <div class="navigation">
+        <button onclick="changeMonth(-1)">Edellinen kuukausi</button>
+        <button onclick="changeMonth(1)">Seuraava kuukausi</button>
+    </div>
     <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] == true): ?>
     <form action="kalenteri.php" method="post">
         <label for="date">Päivämäärä:</label>
@@ -42,7 +77,7 @@
         <button type="submit">Lisää</button>
     </form>
     <?php endif; ?>
-    <div class="calendar">
+<div class="calendar" id="kalenteri">
         <?php
         // Yhdistä tietokantaan (esimerkki MySQL)
         $servername = "localhost";
@@ -55,8 +90,34 @@
         if ($conn->connect_error) {
             die("Yhteys epäonnistui: " . $conn->connect_error);
         }
+ // Aseta oletuskuukausi ja -vuosi
+ $month = date('m');
+ $year = date('Y');
 
-        // Käsittele lomakkeen lähetys
+ if (isset($_GET['month']) && isset($_GET['year'])) {
+     $month = $_GET['month'];
+     $year = $_GET['year'];
+ }
+
+ // Generoi kalenterin sisältö, muutetaan suomeks kentät myöhemmin
+ $first_day_of_month = mktime(0, 0, 0, $month, 1, $year);
+ $days_in_month = date('t', $first_day_of_month);
+ $day_of_week = date('w', $first_day_of_month);
+ $day_of_week = ($day_of_week + 6) % 7; // Muuta viikon ensimmäinen päivä maanantaiksi
+
+ echo "<div class='calendar'>";
+ for ($i = 0; $i < $day_of_week; $i++) {
+     echo "<div class='day'></div>";
+ }
+ for ($day = 1; $day <= $days_in_month; $day++) {
+     echo "<div class='day'>$day</div>";
+ }
+ echo "</div>";
+
+ $conn->close();
+ ?>
+<?php
+// Käsittele lomakkeen lähetys
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $date = $_POST['date'];
             $tapahtumat = $_POST['tapahtumat'];
@@ -135,7 +196,38 @@
 
         $conn->close();
         ?>
-    </div>
+</div>
+    <script>
+        function setMode(mode) {
+            const calendar = document.getElementById('calendar');
+            if (mode === 'ms_orbiit') {
+                calendar.classList.remove('redsven_ink');
+                calendar.classList.add('ms_orbiit');
+            } else if (mode === 'redsven_ink') {
+                calendar.classList.remove('ms_orbiit');
+                calendar.classList.add('redsven_ink');
+            }
+        }
+        
+        function changeMonth(offset) {
+            const urlParams = new URLSearchParams(window.location.search);
+            let month = parseInt(urlParams.get('month')) || new Date().getMonth() + 1;
+            let year = parseInt(urlParams.get('year')) || new Date().getFullYear();
+
+            month += offset;
+            if (month < 1) {
+                month = 12;
+                year--;
+            } else if (month > 12) {
+                month = 1;
+                year++;
+            }
+
+            urlParams.set('month', month);
+            urlParams.set('year', year);
+            window.location.search = urlParams.toString();
+        }
+    </script>
 <?php include 'footer.php'; ?>
 </body>
 </html>

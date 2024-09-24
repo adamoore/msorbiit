@@ -3,18 +3,18 @@
     
     <a href="https://www.youtube.com/@msorbiit" target="_blank"a>
         <img
-        src="msorbiitkuvat/youtubepyöreä.png" alt="youtube" />
+        src="msorbiitkuvat/youtubepyöreä.png" alt="youtube" class="ikonit" />
+    </a>
+
+    <a href="https://www.tiktok.com/@annikaredsven?lang=fi-FI" target="_blank">
+        <img
+        src="msorbiitkuvat/tiktokpyöreä.png" alt="tiktok" class="ikonit" />
     </a>
 
     <a href="https://www.instagram.com/ms_orbiit/" target="_blank"a>
         <img
-        src="msorbiitkuvat/instagrampyöreä.png" alt="instagram" />
+        src="msorbiitkuvat/instagrampyöreä.png" alt="instagram" class="ikonit" />
    </a>
-   
-    <a href="https://www.tiktok.com/@annikaredsven?lang=fi-FI" target="_blank">
-        <img
-        src="msorbiitkuvat/tiktokpyöreä.png" alt="tiktok" />
-    </a>
 </div>
 <br>    
 <footer>

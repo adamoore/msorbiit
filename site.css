@@ -50,8 +50,7 @@ nav ul li {
 }
 
 .calendar {
-    display: grid;
-    flex-direction: column;
+    float: center;
     border: 5px solid #FFFC99;
 }
 
@@ -62,6 +61,12 @@ nav ul li {
 
 footer {
     text-align: center;
+}
+
+.ikonit {
+    max-width: 100px;
+    height: 100px;
+    margin: 50px;
 }
 
 .footer-icons {
