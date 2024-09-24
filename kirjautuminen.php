@@ -44,7 +44,7 @@ $conn->close();
 <body>
     <h1>Kirjaudu</h1>
     <form action="login.php" method="post">
-        <label for="username">Käyttäjänimi:</label>
+        <label for="username">Käyttäjänimi/Username:</label>
         <input type="text" id="username" name="username" required><br>
         
         <label for="password">Salasana:</label>

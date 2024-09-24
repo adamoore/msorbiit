@@ -49,7 +49,7 @@ $conn->close();
     <title>Varaa aika</title>
 </head>
 <body>
-    <h1>Varaa aika tatuointiin</h1>
+    <h1>Varaa aika tatuointiin!</h1>
     <form action="varaus.php" method="post">
         <label for="paivamaara">Päivämäärä:</label>
         <input type="date" id="paivamaara" name="paivamaara" required><br>

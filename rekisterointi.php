@@ -32,7 +32,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rekisteröidy</title>
+    <title>Rekisteröidyt</title>
 </head>
 <body>
     <h1>Rekisteröidy</h1>
