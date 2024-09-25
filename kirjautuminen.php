@@ -44,13 +44,15 @@ $conn->close();
 <body>
     <h1>Kirjaudu</h1>
     <form action="login.php" method="post">
-        <label for="username">Käyttäjänimi/Username:</label>
+        <label for="username">Käyttäjätunnus:</label>
         <input type="text" id="username" name="username" required><br>
-        
+        <p>Käyttäjätunnuksesi on sähköpostiosoitteesi. Jos sinulla ei ole käyttäjätunnusta, rekisteröidythän ensin.</p>
         <label for="password">Salasana:</label>
         <input type="password" id="password" name="password" required><br>
-        
-        <input type="submit" value="Kirjaudu">
+        <p>Salasanasi on se, jonka annoit rekisteröityessäsi.</p>
+        <input type="submit" value="Kirjaudu" class="nappi"> <br>
+        <input type="submit" value="Rekisteröidy" class="nappi">
+        <a href="">Unohditko salasanasi?</a>
     </form>
 </body>
 </html>

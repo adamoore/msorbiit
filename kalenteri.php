@@ -1,4 +1,8 @@
 <?php include 'header.php'; ?>
+<?php
+date_default_timezone_set('Europe/Helsinki');
+$currentMonth = date('F Y');
+?>
 <!DOCTYPE html>
 <html lang="fi">
 <head>
@@ -60,6 +64,7 @@
 </head>
 <body>
     <h1>Tapahtumakalenteri</h1>
+    <h2><?php echo $currentMonth; ?></h2>
     <div class="buttons">
         <button onclick="setMode('ms_orbiit')">M/S Orbiit tapahtumat</button>
         <button onclick="setMode('redsven_ink')">Redsven's Ink Ajanvaraus</button>
@@ -78,8 +83,10 @@
         <input type="text" id="vapaat_ajat" name="vapaat_ajat">
         <button type="submit">Lisää</button>
     </form>
+    <?php else: ?>
+    <p><a href="admin_login.php">Admin kirjautuminen</a></p>
     <?php endif; ?>
-<div class="calendar" id="kalenteri">
+    <div class="calendar" id="kalenteri">
         <?php
         // Yhdistä tietokantaan (esimerkki MySQL)
         $servername = "localhost";
@@ -200,6 +207,7 @@
         ?>
 </div>
     <script>
+        //Tämä koodi käsittelee moodin vaihtamisen
         function setMode(mode) {
             const calendar = document.getElementById('calendar');
             if (mode === 'ms_orbiit') {
@@ -210,7 +218,27 @@
                 calendar.classList.add('redsven_ink');
             }
         }
-        
+        //Tämä käsittelee eri tilojen näyttämisen. Onko sama kuin yllä?
+        let mode = 'ms_orbiit';
+
+        function setMode(newMode) {
+        mode = newMode;
+        updateCalendar();
+        }
+
+        function updateCalendar() {
+        const monthNames = ["Tammikuu", "Helmikuu", "Maaliskuu", "Huhtikuu", "Toukokuu", "Kesäkuu", "Heinäkuu", "Elokuu", "Syyskuu", "Lokakuu", "Marraskuu", "Joulukuu"];
+        document.querySelector('h2').textContent = monthNames[currentDate.getMonth()] + ' ' + currentDate.getFullYear();
+    
+        // Fetch and display events or available times based on the mode
+        if (mode === 'ms_orbiit') {
+        // Display events
+        } else if (mode === 'redsven_ink') {
+        // Display available times
+        }
+        }
+
+        // Tämä on parametri?
         function changeMonth(offset) {
             const urlParams = new URLSearchParams(window.location.search);
             let month = parseInt(urlParams.get('month')) || new Date().getMonth() + 1;
@@ -229,6 +257,19 @@
             urlParams.set('year', year);
             window.location.search = urlParams.toString();
         }
+
+    let currentDate = new Date();
+
+    function changeMonth(offset) {
+    currentDate.setMonth(currentDate.getMonth() + offset);
+    updateCalendar();
+    }
+
+    function updateCalendar() {
+    const monthNames = ["Tammikuu", "Helmikuu", "Maaliskuu", "Huhtikuu", "Toukokuu", "Kesäkuu", "Heinäkuu", "Elokuu", "Syyskuu", "Lokakuu", "Marraskuu", "Joulukuu"];
+    document.querySelector('h2').textContent = monthNames[currentDate.getMonth()] + ' ' + currentDate.getFullYear();
+    // Tämä koodi käsittelee kuukausien vaihtamisen
+    }
     </script>
 <?php include 'footer.php'; ?>
 </body>

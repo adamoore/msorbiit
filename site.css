@@ -49,6 +49,26 @@ nav ul li {
     text-decoration: none;
 }
 
+.historia {
+    background-color: #FFFC99;
+    color: #496E4B;
+    text-align: center;
+}
+
+.laivantiedot {
+    background-color: #496E4B;
+    color: #FFFC99;
+    border-radius: 20px;
+}
+
+.nappi {
+    margin-right: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    font-family: 'Sofadi One', system-ui;
+}
+
 .calendar {
     float: center;
     border: 5px solid #FFFC99;

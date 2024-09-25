@@ -15,7 +15,7 @@
         <img
         src="msorbiitkuvat/instagrampyöreä.png" alt="instagram" class="ikonit" />
    </a>
-</div>
+</div> 
 <br>    
 <footer>
         <p>&copy; 2024 MS-Orbiit</p>
