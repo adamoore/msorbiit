@@ -1,7 +1,7 @@
 <?php 
-// TÄÄ ON JUKAN FILE
+// TÄÄ ON JUKAN FILE Hassen muokkamana
 /* Huom. Tässä salasanakenttien täsmääminen tarkistetaan vain palvelimella. */
-$tietokanta = "neilikka";
+$tietokanta = "msorbiit";
 $title = 'Rekisteröityminen';
 $kentat = ['firstname','lastname','email','password','password2'];
 $kentat_suomi = ['etunimi','sukunimi','sähköpostiosoite','salasana','salasana'];
