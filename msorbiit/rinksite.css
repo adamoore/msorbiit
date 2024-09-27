@@ -1,0 +1,117 @@
+:root {
+    --primary-color: #e6c6dc; /* laivan vihreä */
+    --secondary-color: #4deee1; /*  keltainen */
+    --accent-color: #cfc553;
+    --background-color: #c165d8;
+    --highlight-color: #b843ae;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Unlock', serif;
+}
+
+nav {
+    font-family: "MedievalSharp", cursive;
+    font-weight: 600;
+    font-style: normal;
+    text-decoration: none;
+}
+
+body {
+    margin: 10;
+    padding: 10;
+    background-color: var(--background-color);
+    color: var(--accent-color);
+    font-family: 'Sofadi One', system-ui;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 0;
+}
+
+/* Navigointipalkin tyylit */
+nav ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-bottom: 2px solid var(--primary-color);
+    text-decoration: none;
+}
+
+nav ul li {
+    display: inline;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.historia {
+    background-color: #FFFC99;
+    color: #8236d8;
+    text-align: center;
+}
+
+.laivantiedot {
+    background-color: #bb58aa;
+    color: #FFFC99;
+    border-radius: 20px;
+}
+
+.nappi {
+    margin-right: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    font-family: 'Sofadi One', system-ui;
+}
+
+.calendar {
+    float: center;
+    border: 5px solid #FFFC99;
+}
+
+.day {
+    background-color: #A7DDAC;
+    color: #133667;
+}
+
+footer {
+    text-align: center;
+    background: linear-gradient(to top right, #091ab3, #008000); 
+    color: rgb(219, 225, 233);
+    padding: 30px;
+    
+}
+
+
+.ikonit {
+    max-width: 100px;
+    height: 100px;
+    margin: 50px;
+}
+
+.footer-icons {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.footer-icons a {
+    margin: 0 10px;
+    color: var(--highlight-color);
+    font-size: 24px;
+    text-decoration: none;
+}
+
+/* Taustakuvan tyylit, katotaan miltä näyttää mutta voidaan lisätä läpinäkyvyyttä opacityllä*/
+.theater-background {
+    background-image: url('/rink.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
