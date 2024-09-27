@@ -32,7 +32,7 @@ $currentMonth = date('F Y');
         }
         }
 
-        // Generoi kalenterin sisältö, muutetaan suomeks kentät myöhemmin
+        // Generoi kalenterin sisältö
         $first_day_of_month = mktime(0, 0, 0, $month, 1, $year);
         $days_in_month = date('t', $first_day_of_month);
         $day_of_week = date('w', $first_day_of_month);
