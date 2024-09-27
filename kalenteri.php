@@ -15,30 +15,38 @@ $currentMonth = date('F Y');
         if ($conn->connect_error) {
             die("Yhteys epäonnistui: " . $conn->connect_error);
         }
- // Aseta oletuskuukausi ja -vuosi
- $month = date('m');
- $year = date('Y');
+        // Aseta oletuskuukausi ja -vuosi
+        $month = date('m');
+        $year = date('Y');
 
- if (isset($_GET['month']) && isset($_GET['year'])) {
-     $month = $_GET['month'];
-     $year = $_GET['year'];
- }
+        if (isset($_GET['month']) && isset($_GET['year'])) {
+            $month = (int)$_GET['month'];
+            $year = (int)$_GET['year'];
 
- // Generoi kalenterin sisältö, muutetaan suomeks kentät myöhemmin
- $first_day_of_month = mktime(0, 0, 0, $month, 1, $year);
- $days_in_month = date('t', $first_day_of_month);
- $day_of_week = date('w', $first_day_of_month);
- $day_of_week = ($day_of_week + 6) % 7; // Muuta viikon ensimmäinen päivä maanantaiksi
+        //Validate month and year
+        if ($month < 1 || $month > 12) {
+            $month = date('m');
+        }
+        if ($year < 1970 || $year > 2038) {
+            $year = date('Y');
+        }
+        }
 
- echo "<div class='calendar'>";
- for ($i = 0; $i < $day_of_week; $i++) {
-     echo "<div class='day'></div>";
- }
- for ($day = 1; $day <= $days_in_month; $day++) {
-     echo "<div class='day'>$day</div>";
- }
- echo "</div>";
-// Käsittele lomakkeen lähetys
+        // Generoi kalenterin sisältö, muutetaan suomeks kentät myöhemmin
+        $first_day_of_month = mktime(0, 0, 0, $month, 1, $year);
+        $days_in_month = date('t', $first_day_of_month);
+        $day_of_week = date('w', $first_day_of_month);
+        $day_of_week = ($day_of_week + 6) % 7; // Muuta viikon ensimmäinen päivä maanantaiksi
+
+        //echo "<div class='calendar'>";
+        //for ($i = 0; $i < $day_of_week; $i++) {
+        //echo "<div class='day'></div>";
+        //}
+        //for ($day = 1; $day <= $days_in_month; $day++) {
+        //echo "<div class='day'>$day</div>";
+        //}
+       // echo "</div>";
+        // Käsittele lomakkeen lähetys
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $date = $_POST['date'];
             $tapahtumat = $_POST['tapahtumat'];
@@ -126,31 +134,23 @@ $currentMonth = date('F Y');
     <script src="kalescripts.js" defer></script>
 </head>
 <body>
+    </html>
     <h1>Tapahtumakalenteri</h1>
     <h2><?php echo $currentMonth; ?></h2>
+    <p>Selaa kalenteria nähdäksesi M/S Orbiit tapahtumat tai varaa aika Redsven's Ink Tatuointistudioon!</p><br>
+    <p>Jonotusaika studiolle on arviolta 2-3 kuukautta.</p><br>    
+    <p>Ajanvaraus vaatii sisäänkirjautumisen tai rekisteröitymisen omalla sähköpostiosoitteella.</p>
     <div class="buttons">
-        <button onclick="setMode('biit')">M/S Orbiit tapahtumat</button>
-        <button onclick="setMode('rink')">Redsven's Ink Ajanvaraus</button>
+        <button onclick="setMode('biit')">Tapahtumat</button>
+        <button onclick="setMode('rink')">Ajanvaraus</button>
     </div>
+    <div class="calendar" id="calendar"></div>   
     <div class="navigation">
         <button onclick="changeMonth(-1)">Edellinen</button>
         <button onclick="changeMonth(1)">Seuraava</button>
-    </div>
-    <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] == true): ?>
-    <form action="kalenteri.php" method="post">
-        <label for="date">Päivämäärä:</label>
-        <input type="date" id="date" name="date" required>
-        <label for="tapahtumat">Tapahtumat:</label>
-        <input type="text" id="tapahtumat" name="tapahtumat">
-        <label for="vapaat_ajat">Vapaita aikoja:</label>
-        <input type="text" id="vapaat_ajat" name="vapaat_ajat">
-        <button type="submit">Lisää</button>
-    </form>
-    <?php else: ?>
+    </div> 
     <p><a href="admin_login.php">Admin kirjautuminen</a></p>
-    <?php endif; ?>
-    <div class="calendar" id="calendar">
-        
+    
 <?php include 'footer.php'; ?>
 </body>
 </html>
