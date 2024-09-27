@@ -3,7 +3,41 @@
 date_default_timezone_set('Europe/Helsinki');
 $currentMonth = date('F Y');
 ?>
-    <?php
+<?php
+// Generoi kalenterin sisältö
+        $first_day_of_month = mktime(0, 0, 0, $month, 1, $year);
+        $days_in_month = date('t', $first_day_of_month);
+        $day_of_week = date('w', $first_day_of_month);
+        $day_of_week = ($day_of_week + 6) % 7; // Muuta viikon ensimmäinen päivä maanantaiksi
+
+        echo "<div class='calendar'>";
+        for ($i = 0; $i < $day_of_week; $i++) {
+        echo "<div class='day'></div>";
+        }
+        for ($day = 1; $day <= $days_in_month; $day++) {
+        echo "<div class='day'>$day</div>";
+        }
+        echo "</div>";
+        
+// Aseta oletuskuukausi ja -vuosi
+        $month = date('m');
+        $year = date('Y');
+
+        if (isset($_GET['month']) && isset($_GET['year'])) {
+            $month = (int)$_GET['month'];
+            $year = (int)$_GET['year'];
+
+//Validate month and year
+        if ($month < 1 || $month > 12) {
+            $month = date('m');
+        }
+        if ($year < 1970 || $year > 2038) {
+            $year = date('Y');
+        }
+        }
+
+?>   
+<?php
         // Yhdistä tietokantaan (esimerkki MySQL)
         $servername = "localhost";
         $username = "root";
@@ -15,37 +49,7 @@ $currentMonth = date('F Y');
         if ($conn->connect_error) {
             die("Yhteys epäonnistui: " . $conn->connect_error);
         }
-        // Aseta oletuskuukausi ja -vuosi
-        $month = date('m');
-        $year = date('Y');
-
-        if (isset($_GET['month']) && isset($_GET['year'])) {
-            $month = (int)$_GET['month'];
-            $year = (int)$_GET['year'];
-
-        //Validate month and year
-        if ($month < 1 || $month > 12) {
-            $month = date('m');
-        }
-        if ($year < 1970 || $year > 2038) {
-            $year = date('Y');
-        }
-        }
-
-        // Generoi kalenterin sisältö
-        $first_day_of_month = mktime(0, 0, 0, $month, 1, $year);
-        $days_in_month = date('t', $first_day_of_month);
-        $day_of_week = date('w', $first_day_of_month);
-        $day_of_week = ($day_of_week + 6) % 7; // Muuta viikon ensimmäinen päivä maanantaiksi
-
-        //echo "<div class='calendar'>";
-        //for ($i = 0; $i < $day_of_week; $i++) {
-        //echo "<div class='day'></div>";
-        //}
-        //for ($day = 1; $day <= $days_in_month; $day++) {
-        //echo "<div class='day'>$day</div>";
-        //}
-       // echo "</div>";
+        
         // Käsittele lomakkeen lähetys
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $date = $_POST['date'];
@@ -87,16 +91,6 @@ $currentMonth = date('F Y');
             '12-26' => 'Tapaninpäivä'
         ];
 
-        // Näytä kalenteri
-        $month = date('m');
-        $year = date('Y');
-        $days_in_month = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-
-        for ($day = 1; $day <= $days_in_month; $day++) {
-            $date = "$year-$month-" . str_pad($day, 2, '0', STR_PAD_LEFT);
-            $day_key = date('m-d', strtotime($date));
-            echo "<div class='day'>$day";
-
             // Näytä tapahtumat
             $sql = "SELECT tapahtumat FROM tapahtumat WHERE date='$date'";
             $result = $conn->query($sql);
@@ -122,7 +116,7 @@ $currentMonth = date('F Y');
             }
 
             echo "</div>";
-        }
+        
 ?>
 <!DOCTYPE html>
 <html lang="fi">
@@ -143,13 +137,14 @@ $currentMonth = date('F Y');
     <div class="buttons">
         <button onclick="setMode('biit')">Tapahtumat</button>
         <button onclick="setMode('rink')">Ajanvaraus</button>
-    </div>
-    <div class="calendar" id="calendar"></div>   
+    </div>  
     <div class="navigation">
         <button onclick="changeMonth(-1)">Edellinen</button>
         <button onclick="changeMonth(1)">Seuraava</button>
     </div> 
     <p><a href="admin_login.php">Admin kirjautuminen</a></p>
+
+</body></html>
     
 <?php include 'footer.php'; ?>
 </body>

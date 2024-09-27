@@ -2,15 +2,15 @@
         function setMode(mode) {
             const calendar = document.getElementById('calendar');
             if (mode === 'ms_orbiit') {
-                calendar.classList.remove('redsven_ink');
-                calendar.classList.add('ms_orbiit');
-            } else if (mode === 'redsven_ink') {
-                calendar.classList.remove('ms_orbiit');
-                calendar.classList.add('redsven_ink');
+                calendar.classList.remove('rink');
+                calendar.classList.add('biit');
+            } else if (mode === 'rink') {
+                calendar.classList.remove('biit');
+                calendar.classList.add('rink');
             }
         }
     //Tämä käsittelee eri tilojen näyttämisen. Onko sama kuin yllä?
-        let mode = 'ms_orbiit';
+        let mode = 'biit';
 
         function setMode(newMode) {
         mode = newMode;
@@ -22,9 +22,9 @@
         document.querySelector('h2').textContent = monthNames[currentDate.getMonth()] + ' ' + currentDate.getFullYear();
     
         // Fetch and display events or available times based on the mode
-        if (mode === 'ms_orbiit') {
+        if (mode === 'biit') {
         // Display events --> ei tiedä mitä displayata
-        } else if (mode === 'redsven_ink') {
+        } else if (mode === 'rink') {
         // Display available times --> ei ole näytettävää
         }
         }

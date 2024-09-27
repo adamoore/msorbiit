@@ -41,7 +41,7 @@
         <nav>
             <ul>
                 <li><a href="redsvensink.php">Redsven's Ink Tatuointistudio</a></li>
-                <li><a href="kalenteri.php">Ajanvaraus</a></li>
+                <li><a href="kalenteri.php">Kalenteri</a></li>
                 <li><a href="galleriaink.php">Redsven's Ink Galleria</a></li>
                 <li><a href="kirjautuminen.php">Kirjaudu</a></li>
                 <li><a href="rekisterointi.php">Rekisteröidy</a></li>
