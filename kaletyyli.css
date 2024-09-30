@@ -1,3 +1,24 @@
+/* Mobile First */
+@media (max-width: 600px) {
+    .calendar {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* Tablet */
+@media (min-width: 601px) and (max-width: 900px) {
+    .calendar {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Desktop */
+@media (min-width: 901px) {
+    .calendar {
+        grid-template-columns: repeat(7, 1fr);
+    }
+}
+
 /* Navigointipalkin tyylit */
 nav ul{
     list-style-type: none;
@@ -5,8 +26,8 @@ nav ul{
     margin: 0;
     display: flex;
     justify-content: space-around;
-    background-color: var(--secondary-color);
-    border-bottom: 2px solid var(--primary-color);
+    background-color: var(#496E4B);
+    border-bottom: 2px solid var(#FFFC99);
     text-decoration: none;
 }
 
@@ -17,11 +38,11 @@ nav ul li {
 }
 
 .calendar {
-    display: inline-grid;
-    grid-template-columns: repeat(7, 1fr);
+    display: grid;
+    grid-template-columns: 100px repeat(7, 1fr);
     gap: 10px;
-    background-color: #133667;
-    color: #DD992C;
+    background-color: #A7DDAC;
+    color: #133667;
     margin: 0 auto;
     float: center;
     border: 5px solid #FFFC99;
@@ -45,23 +66,72 @@ nav ul li {
     display: none;
 }
 
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: center;
+}
+
+.weekday {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border: 3px solid #17C3B2;
+    font-weight: bold;
+}
+
 .day {
     border: 1px solid #ccc;
     padding: 10px;
     text-align: center;
     background-color: #D3F6DB;
     color: #133667; 
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
 }
-.tapahtumat, .holiday, .vapaat_ajat {
-    background-color: #f0f0f0;
+
+.hour-row {
+    display: grid;
+    grid-template-columns: 100px repeat(7, 1fr);
+}
+
+.hour {
+    font-weight: bold;
+    text-align: right;
+    padding: 10px;
+    border: 1px solid #DD992C;
+}
+/* Timeslot-tyylit */
+.timeslots {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 20px;
+}
+
+.timeslots .slot {
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #FFF;
+    color: #000;
+}
+.tapahtumat .timeslots.tapahtumat {
+    background-color: #17C3B2;
     margin-top: 5px;
     padding: 5px;
 }
-.holiday {
+.holiday  .timeslots.holiday{
     background-color: #FF817E;
+    margin-top: 5px;
+    padding: 5px;
 }
-.vapaat_ajat {
+.vapaat_ajat .timeslots.vapaat_ajat {
     background-color: #90EE90;
+    margin-top: 5px;
+    padding: 5px;
 }
 
 .buttons {
@@ -72,7 +142,7 @@ nav ul li {
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 5px;
-    background-color: #17C3B2;
+    background-color: #0099FF;
     font-family: 'Sofadi One', system-ui;
 }
 .navigation {
@@ -105,7 +175,7 @@ footer {
 
 .footer-icons a {
     margin: 0 10px;
-    color: var(--highlight-color);
+    color: var(#FFFC99);
     font-size: 24px;
     text-decoration: none;
 }

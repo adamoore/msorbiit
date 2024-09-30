@@ -1,7 +1,7 @@
     // Tämä koodi käsittelee moodin vaihtamisen 
         function setMode(mode) {
             const calendar = document.getElementById('calendar');
-            if (mode === 'ms_orbiit') {
+            if (mode === 'biit') {
                 calendar.classList.remove('rink');
                 calendar.classList.add('biit');
             } else if (mode === 'rink') {
@@ -60,3 +60,18 @@
     document.querySelector('h2').textContent = monthNames[currentDate.getMonth()] + ' ' + currentDate.getFullYear();
     // Tämä koodi käsittelee kuukausien vaihtamisen
     }
+    // Tämä näyttää timeslotit kun päivää klikataan
+    document.addEventListener('DOMContentLoaded', function() {
+        const timeslots = document.querySelector('.timeslots');
+    
+        window.showTimeslots = function(day) {
+            timeslots.innerHTML = ''; // Tyhjennä aikaisemmat timeslotit
+            timeslots.style.display = 'grid'; // Näytä timeslotit
+            for (let i = 8; i < 24; i++) {
+                const slot = document.createElement('div');
+                slot.classList.add('slot');
+                slot.textContent = `${i}:00 - ${i + 1}:00`;
+                timeslots.appendChild(slot);
+            }
+        };
+    });
