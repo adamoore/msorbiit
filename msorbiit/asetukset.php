@@ -1,8 +1,8 @@
 <?php
 error_reporting(E_ALL);
 $PALVELIN = $_SERVER['HTTP_HOST'];
-$PALVELU = "projektit_PHP/php_sovellusmalli";
-$LINKKI_RESETPASSWORD = "resetpassword.php";
+$PALVELU = "MSorbiit";
+$LINKKI_RESETPASSWORD = "reset_password.php";
 $LINKKI_VERIFICATION = "verification.php";
 //$PALVELUOSOITE = "asiakaspalvelu@msorbiit.fi";
 
@@ -10,10 +10,10 @@ define("OLETUSSIVU","profiili.php");
 define("PROFIILIKUVAKANSIO","profiilikuvat");
 define("PROFIILIKUVAKOKO",5242880);
 
-$DB = "msorbiit";
+$DB = "kalenteri";
 $LOCAL = in_array($_SERVER['REMOTE_ADDR'],array('127.0.0.1','REMOTE_ADDR' => '::1'));
 if ($LOCAL) {	
-    $tunnukset = "../../../tunnukset.php";
+    $tunnukset = "../../../tunnukset.php"; /*mitähän tässä pitäisi olla?*/
     if (file_exists($tunnukset)){
         include_once("../../../tunnukset.php");
         } 

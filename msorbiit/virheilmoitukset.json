@@ -1,8 +1,9 @@
-<script>{
-    "firstname": "Etunimi on pakollinen.",
-    "lastname": "Sukunimi on pakollinen.",
+{
+    "etunimi": "Etunimi on pakollinen.",
+    "sukunimi": "Sukunimi on pakollinen.",
+    "puhelin": "Puhelinnumero on pakollinen.",
     "email": "Sähköpostiosoite on pakollinen.",
     "email_invalid": "Sähköpostiosoite ei ole kelvollinen.",
-    "password": "Salasana on pakollinen.",
-    "password_mismatch": "Salasanat eivät täsmää."
+    "salasana": "Salasana on pakollinen.",
+    "salasana_eitasmaa": "Salasanat eivät täsmää."
 }

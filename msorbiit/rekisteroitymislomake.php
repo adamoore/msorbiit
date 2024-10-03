@@ -1,18 +1,20 @@
 <?php 
 
 
-$tietokanta = "msorbiit";
+$tietokanta = "kalenteri";
 $title = 'Rekisteröityminen';
-$kentat = ['firstname','lastname','email','password','password2'];
-$kentat_suomi = ['etunimi','sukunimi','sähköpostiosoite','salasana','salasana'];
-$pakolliset = ['firstname','lastname','email','password','password2'];
+$kentat = ['etunimi','sukunimi','email','password','password2'];
+$kentat_suomi = ['etunimi','sukunimi','email','salasana','salasana'];
+$pakolliset = ['etunimi','sukunimi','email','password','password2'];
 
 $kentat_tiedosto = ['image'];
 $css = 'rekisteröityminen.css';
-echo "<script>const virheilmoitukset = $virheilmoitukset_json</script>";
+//echo "<script>const virheilmoitukset = $virheilmoitukset_json</script>";
+
 
 include "posti.php";
 include "rekisterointi.php";
+
 // Varmista, että $success on määritelty
 $success = $success ?? "";
 
@@ -29,24 +31,35 @@ if ($success != "success") { ?>
 <legend>Rekisteröityminen</legend>
 
 <div class="row">
-<label for="firstname" class="col-sm-4 form-label">Etunimi</label>
+<label for="etunimi" class="col-sm-4 form-label">Etunimi</label>
 <div class="col-sm-8">
-<input pattern="<?= pattern("firstname"); ?>" type="text" class="mb-1 form-control <?= is_invalid('firstname'); ?>" name="firstname" id="firstname" 
-       placeholder="Etunimi" value="<?= arvo("firstname"); ?>" 
+<input pattern="<?= pattern("etunimi"); ?>" type="text" class="mb-1 form-control <?= is_invalid('etunimi'); ?>" name="etunimi" id="etunimi" 
+       placeholder="Etunimi" value="<?= arvo("etunimi"); ?>" 
        required autofocus> 
 <div class="invalid-feedback">
-<?= $errors['firstname'] ?? ""; ?>    
+<?= $errors['etunimi'] ?? ""; ?>    
 </div>
 </div>    
 </div>
 
 <div class="row">
-<label for="lastname" class="col-sm-4 form-label">Sukunimi</label>
+<label for="sukunimi" class="col-sm-4 form-label">Sukunimi</label>
 <div class="col-sm-8">
-<input type="text" class="mb-1 form-control <?= is_invalid('lastname'); ?>" name="lastname" id="lastname" 
-       placeholder="Sukunimi" value="<?= arvo("lastname"); ?>" required>
+<input type="text" class="mb-1 form-control <?= is_invalid('sukunimi'); ?>" name="sukunimi" id="sukunimi" 
+       placeholder="Sukunimi" value="<?= arvo("sukunimi"); ?>" required>
 <div class="invalid-feedback">
-<?= $errors['lastname'] ?? ""; ?>    
+<?= $errors['sukunimi'] ?? ""; ?>    
+</div>
+</div>
+</div>
+
+<div class="row">
+<label for="puhelin" class="col-sm-4 form-label">Puhelinnumero</label>
+<div class="col-sm-8">
+<input type="tel" class="mb-1 form-control <?= is_invalid('puhelin'); ?>" name="puhelin" id="puhelin" 
+       placeholder="Puhelinnumero" value="<?= arvo("puhelin"); ?>" required>
+<div class="invalid-feedback">
+<?= $errors['puhelin'] ?? ""; ?>    
 </div>
 </div>
 </div>

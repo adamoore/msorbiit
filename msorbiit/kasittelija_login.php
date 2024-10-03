@@ -24,7 +24,7 @@ if (isset($_POST['painike'])){
    $rememberme = isset($rememberme) ? true : false;
    if ($errors) debuggeri($errors);
    if (!$errors){
-      $query = "SELECT users.id,password,is_active,name FROM users LEFT JOIN roles ON role = roles.id WHERE email = '$email'";
+      $query = "SELECT id,password,is_active,name FROM users LEFT JOIN roles ON role = roles.id WHERE email = '$email'";
       debuggeri($query);
       $result = $yhteys->query($query);
       if (!$result) die("Tietokantayhteys ei toimi: ".mysqli_error($connection));

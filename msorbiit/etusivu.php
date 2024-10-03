@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en fi">
 <body>
-
+<!-- Esitellään laivan omistajat ja "laiva tänään" -->
     <main>
         <h1>M/S Orbiit ETUSIVU</h1>
         <p> MINÄ TESTAAN TÄTÄ muutos 1

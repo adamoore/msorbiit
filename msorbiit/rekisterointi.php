@@ -1,10 +1,7 @@
 <?php
 
 session_start();
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "kalenteri";
+include 'connect.php';
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -20,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $email = $_POST['email'];
 
-    $sql = "INSERT INTO users (username, password, email) VALUES ('$username', '$password', '$email')";
+    $sql = "INSERT INTO users (kayttajatunnus, salasana, email) VALUES ('$kayttajatunnus', '$salasana', '$email')";
 
     if ($conn->query($sql) === TRUE) {
         $success = true;
@@ -32,34 +29,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 ?>
-<!DOCTYPE html>
-<html lang="fi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rekisteröidy</title>
-    <link rel="stylesheet" href="rekisteröityminen.css">
 
-</head>
-<body>
-    <div class="container">
-        <h1>Rekisteröidy</h1>
-        <?php if ($success): ?>
-            <p><?php echo $message; ?></p>
-        <?php else: ?>
-            <form action="rekisterointi.php" method="post">
-                <label for="username">Käyttäjänimi:</label>
-                <input type="text" id="username" name="username" required><br>
-                
-                <label for="password">Salasana:</label>
-                <input type="password" id="password" name="password" required><br>
-                
-                <label for="email">Sähköposti:</label>
-                <input type="email" id="email" name="email" required><br>
-                
-                <input type="submit" value="Rekisteröidy">
-            </form>
-        <?php endif; ?>
-    </div>
-</body>
-</html>

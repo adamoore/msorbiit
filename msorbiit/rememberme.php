@@ -112,7 +112,7 @@ function secure_page($role = ''){
 $loggedIn = loggedIn();
 if (!$loggedIn || $role && $role != $loggedIn){
     $_SESSION['next_page'] = $_SERVER['PHP_SELF']; 
-    header("location: login.php");
+    header("location: kirjautuminen.php");
     exit;
     }
 return $loggedIn;

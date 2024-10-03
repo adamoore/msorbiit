@@ -11,7 +11,7 @@ if ($token) {
    /* Haetaan email */
    $date = date('Y-m-d');
    $token = $yhteys->real_escape_string(strip_tags(trim($token)));
-   $query = "SELECT users_id FROM resetpassword_tokens WHERE token = '$token' AND voimassa >= '$date'";
+   $query = "SELECT kayttajatunnus FROM resetpassword_tokens WHERE token = '$token' AND voimassa >= '$date'";
    debuggeri($query);
    $result = $yhteys->query($query);
    if (!list($users_id) = $result->fetch_row()){

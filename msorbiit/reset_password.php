@@ -3,7 +3,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
 
     // Tarkista, onko sähköpostiosoite olemassa tietokannassa
-    $sql = "SELECT id FROM users WHERE email='$email'";
+    $sql = "SELECT kayttajatunnus FROM users WHERE email='$email'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form action="reset_password.php" method="post">
         <label for="email">Sähköpostiosoite:</label>
         <input type="email" id="email" name="email" required><br>
-        <input type="submit" value="Lähetä palautuslinkki" class="nappi">
+        <button><a href="verification.php">Lähetä palautuslinkki!</a></button>
     </form>
 </body>
 </html>

@@ -19,17 +19,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// Jos ei ole virheitä, tallenna tiedot tietokantaan ja lähetä sähköposti
 	if (empty($errors)) {
 		// Tallenna tiedot tietokantaan
-		$conn = new mysqli("localhost", "root", "", "msorbiit");
+		$conn = new mysqli("localhost", "root", "", "kalenteri");
 		if ($conn->connect_error) {
 			die("Yhteys epäonnistui: " . $conn->connect_error);
 		}
 
-		$stmt = $conn->prepare("INSERT INTO users (firstname, lastname, email, password) VALUES (?, ?, ?, ?)");
-		$stmt->bind_param("ssss", $_POST['firstname'], $_POST['lastname'], $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT));
+		$stmt = $conn->prepare("INSERT INTO users (firstname, lastname, email, salasana) VALUES (?, ?, ?, ?)");
+		$stmt->bind_param("ssss", $_POST['firstname'], $_POST['lastname'], $_POST['email'], password_hash($_POST['salasana'], PASSWORD_DEFAULT));
 		$stmt->execute();
 		$stmt->close();
 
-		// Lähetä vahvistusviesti
+		// Lähetä vahvistusviesti seuraava on verification.php
 		$to = $_POST['email'];
 		$subject = "Vahvista sähköpostiosoitteesi";
 		$message = "Hei " . $_POST['firstname'] . ",\n\nKiitos rekisteröitymisestä! Vahvista sähköpostiosoitteesi klikkaamalla alla olevaa linkkiä:\n\n";
