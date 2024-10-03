@@ -1,5 +1,6 @@
 <?php 
 
+
 $tietokanta = "msorbiit";
 $title = 'Rekisteröityminen';
 $kentat = ['firstname','lastname','email','password','password2'];
@@ -8,10 +9,9 @@ $pakolliset = ['firstname','lastname','email','password','password2'];
 
 $kentat_tiedosto = ['image'];
 $css = 'rekisteröityminen.css';
-//include "virheilmoitukset.php";
 echo "<script>const virheilmoitukset = $virheilmoitukset_json</script>";
 
-//include "posti.php";
+include "posti.php";
 include "rekisterointi.php";
 // Varmista, että $success on määritelty
 $success = $success ?? "";
@@ -21,6 +21,8 @@ $success = $success ?? "";
 
 <?php 
 if ($success != "success") { ?>
+
+
 
 <form method="post" class="mb-3 needs-validation" enctype="multipart/form-data" novalidate >
 <fieldset>

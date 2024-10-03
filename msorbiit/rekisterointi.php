@@ -1,5 +1,6 @@
-<?php include 'header.php'; ?>
 <?php
+
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -37,35 +38,28 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rekisteröidy</title>
-    <link rel="stylesheet" href="site.css">
+    <link rel="stylesheet" href="rekisteröityminen.css">
+
 </head>
 <body>
-    <h1>Rekisteröidy</h1>
-    <?php if ($success): ?>
-        <p><?php echo $message; ?></p>
-    <?php else: ?>
-        <form action="rekisterointi.php" method="post">
-            <label for="username">Käyttäjänimi:</label>
-            <input type="text" id="username" name="username" required><br>
-            
-            <label for="password">Salasana:</label>
-            <input type="password" id="password" name="password" required><br>
-            
-            <label for="email">Sähköposti:</label>
-            <input type="email" id="email" name="email" required><br>
-            
-            <input type="submit" value="Rekisteröidy">
-        </form>
-        <?php if ($message): ?>
+    <div class="container">
+        <h1>Rekisteröidy</h1>
+        <?php if ($success): ?>
             <p><?php echo $message; ?></p>
+        <?php else: ?>
+            <form action="rekisterointi.php" method="post">
+                <label for="username">Käyttäjänimi:</label>
+                <input type="text" id="username" name="username" required><br>
+                
+                <label for="password">Salasana:</label>
+                <input type="password" id="password" name="password" required><br>
+                
+                <label for="email">Sähköposti:</label>
+                <input type="email" id="email" name="email" required><br>
+                
+                <input type="submit" value="Rekisteröidy">
+            </form>
         <?php endif; ?>
-    <?php endif; ?>
+    </div>
 </body>
 </html>
-
-<!-- Tää loppukoodi on Jukan file -->
-<?php
-$display = "d-none";
-$message = "";
-$success = "";
-?>

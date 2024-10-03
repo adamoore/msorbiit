@@ -1,194 +1,75 @@
 
-    :root {
-    --primary-color: #e9d563; /* laivan vihreä */
-    --secondary-color: #32aa14; /*  keltainen */
-    --accent-color: #cfc553;
-    --background-color: #496E4B;
-    --highlight-color: #DD992C;
-}
-
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Unlock', serif;
-}
-
-nav {
-    font-family: "MedievalSharp", cursive;
-    font-weight: 600;
-    font-style: normal;
-    text-decoration: none;
-}
-
 body {
-    margin: 10;
-    padding: 10;
-    background-color: var(--background-color);
-    color: var(--accent-color);
-    font-family: 'Sofadi One', system-ui;
-}
-
-header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 10px 0;
-}
-
-/* Navigointipalkin tyylit */
-nav ul{
-    list-style-type: none;
-    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #055510;
     margin: 0;
-    display: flex;
-    justify-content: space-around;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    border-bottom: 2px solid var(--primary-color);
-    text-decoration: none;
-}
-
-nav ul li {
-    display: inline;
-    padding: 10px;
-    text-decoration: none;
-}
-
-.historia {
-    background-color: #FFFC99;
-    color: #496E4B;
-    text-align: center;
-}
-
-.laivantiedot {
-    background-color: #496E4B;
-    color: #FFFC99;
-    border-radius: 20px;
-}
-
-.nappi {
-    margin-right: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    font-family: 'Sofadi One', system-ui;
-}
-
-.calendar {
-    float: center;
-    border: 5px solid #FFFC99;
-}
-
-.day {
-    background-color: #A7DDAC;
-    color: #133667;
-}
-
-footer {
-    text-align: center;
-    background: linear-gradient(to top right, #091ab3, #008000); /* Keltaisesta (#FFFF00) vihreään (#008000) */
-    color: rgb(219, 225, 233);
-    padding: 30px;
-    
-}
-
-
-.ikonit {
-    max-width: 100px;
-    height: 100px;
-    margin: 50px;
-}
-
-.footer-icons {
+    padding: 0;
     display: flex;
     justify-content: center;
-    padding: 10px 0;
-}
-
-.footer-icons a {
-    margin: 0 10px;
-    color: var(--highlight-color);
-    font-size: 24px;
-    text-decoration: none;
-}
-
-/* Taustakuvan tyylit, katotaan miltä näyttää mutta voidaan lisätä läpinäkyvyyttä opacityllä*/
-.theater-background {
-    background-image: url('/msorbiit2.jpg');
-    background-size: cover;
-    background-position: center;
+    align-items: center;
     height: 100vh;
 }
 
-body {
-	font-family: Arial, sans-serif;
-	background-color: #f4f4f4;
-	margin: 0;
-	padding: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-}
-
 .container {
-	background-color: #fff;
-	padding: 20px;
-	border-radius: 8px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	max-width: 400px;
-	width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
 }
 
 h1 {
-	text-align: center;
-	color: #333;
-	margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
 }
 
 form {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .form-group {
-	margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 label {
-	margin-bottom: 5px;
-	color: #555;
+    margin-bottom: 5px;
+    color: #555;
 }
 
 input[type="text"],
 input[type="email"],
 input[type="password"] {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 input[type="submit"] {
-	background-color: #007bff;
-	color: #fff;
-	padding: 10px;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
+    background-color: #007bff;
+    color: #096106;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 input[type="submit"]:hover {
-	background-color: #0056b3;
+    background-color: #0056b3;
 }
 
 a {
-	color: #007bff;
-	text-decoration: none;
-	margin-top: 10px;
-	text-align: center;
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 10px;
+    text-align: center;
 }
 
 a:hover {
-	text-decoration: underline;
+    text-decoration: underline;
 }
-

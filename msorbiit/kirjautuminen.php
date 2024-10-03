@@ -51,8 +51,8 @@ $conn->close();
         <input type="password" id="password" name="password" required><br>
         <p>Salasanasi on se, jonka annoit rekisteröityessäsi.</p>
         <input type="submit" value="Kirjaudu" class="nappi"> <br>
-        <input type="submit" value="Rekisteröidy" class="nappi">
-        <a href="">Unohditko salasanasi?</a>
+        <a href="rekisterointi.php" value="Rekisteröidy" class="nappi">Rekisteröidy</a>
+        <a href="reset_password.php">Unohditko salasanasi?</a>
     </form>
 </body>
 </html>

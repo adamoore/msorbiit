@@ -115,3 +115,7 @@ footer {
     background-position: center;
     height: 100vh;
 }
+
+a.nappi:hover {
+    background-color: #0056b3;
+}

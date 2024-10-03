@@ -33,7 +33,7 @@
                 <li><a href="historia.php">Historia</a></li>
                 <li><a href="laivantiedot.php">Laivan tiedot</a></li>
                 <li><a href="galleriaorb.php">M/S Orbiit Galleria</a></li>
-                <li><a href="liityjaseneksi.php">Matkassa mukana</a></li>
+                <li><a href="sponsorit.php">Matkassa mukana</a></li>
                 <li><a href="verkkokauppa.php">Verkkokauppa</a></li>
                 <li><a href="vieraskirja.php">Vieraskirja</a></li>
             </ul>
