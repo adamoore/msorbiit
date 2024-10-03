@@ -47,5 +47,32 @@ if (isset($_POST['login'])) {
     </form>
     <?php else: ?>
 
+        <!--Jos admin haluaa lisätä tapahtuman tai vapaan ajan?
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $date = $_POST['date'];
+            $tapahtumat = $_POST['tapahtumat'];
+            $vapaat_ajat = $_POST['vapaat_ajat'];
+
+            if (!empty($tapahtumat)) {
+                $sql = "INSERT INTO tapahtumat (paivamaara, tapahtumat) VALUES ('$paivamaara', '$tapahtumat')";
+                echo $sql;
+                exit;
+                if ($conn->query($sql) === TRUE) {
+                    echo "Tapahtuma lisätty onnistuneesti";
+                } else {
+                    echo "Virhe: " . $sql . "<br>" . $conn->error;
+                }
+            }
+
+            if (!empty($vapaat_ajat)) {
+                $sql = "INSERT INTO vapaat_ajat (paivamaara, vapaat_ajat) VALUES ('$date', '$vapaat_ajat')";
+                if ($conn->query($sql) === TRUE) {
+                    echo "Vapaa aika lisätty onnistuneesti";
+                } else {
+                    echo "Virhe: " . $sql . "<br>" . $conn->error;
+                }
+            }
+        }*/-->
+
 </body>
 </html> 

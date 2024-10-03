@@ -12,8 +12,11 @@
 	<style>
 		.carousel-inner > .item > img {
 			width: 50%;
+			height: 50%;
 			border-radius: 50px;
+			border: 5px solid #133667;
 			margin: auto;
+			background-color: #496E4B;
 		}
 	</style>
 </head>

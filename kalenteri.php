@@ -3,11 +3,7 @@
 date_default_timezone_set('Europe/Helsinki');
 $currentMonth = date('F Y');
 $daysInMonth = date('t');
-$holidays = [5, 15]; // Esimerkki pyhäpäivistä
-$vapaat_ajat = [10, 20]; // Esimerkki vapaista ajoista
-$tapahtumat = [12, 25]; // Esimerkki tapahtumista
 $weekdays = ['Ma', 'Ti', 'Ke', 'To', 'Pe', 'La', 'Su'];
-$hours = range(8, 23);
 ?>
 <?php
 // Aseta oletuskuukausi ja -vuosi
@@ -26,13 +22,16 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
         $year = date('Y');
     }
 }
-// Generoi kalenterin sisältö
+        // Hae nykyinen päivämäärä
+        $date = date('Y-m-d');
+        $paivamaara = date('d-m-Y');
+        
+        // Generoi kalenterin sisältö
         $first_day_of_month = mktime(0, 0, 0, $month, 1, $year);
         $days_in_month = date('t', $first_day_of_month);
         $day_of_week = date('w', $first_day_of_month);
         $day_of_week = ($day_of_week + 6) % 7; // Muuta viikon ensimmäinen päivä maanantaiksi
-        $weekdays = ['ma', 'ti', 'ke', 'to', 'pe', 'la', 'su'];
-        $hours = range(8, 24); // Tunnit 08:00 - 00:00
+        $weekdays = ['Ma', 'Ti', 'Ke', 'To', 'Pe', 'La', 'Su'];
         
         echo "<div class='calendar'>";
         for ($i = 0; $i < $day_of_week; $i++) {
@@ -41,7 +40,7 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
         for ($day = 1; $day <= $days_in_month; $day++) {
         echo "<div class='day'>$day</div>";
         }
-        echo "</div>";
+        echo "</div>";    
 
         // Suomalaiset pyhät ja juhlat (kiinteät)
         $holidays = [
@@ -57,21 +56,18 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
             '12-26' => 'Tapaninpäivä'
         ];
 
-        // Lisää liikkuvat pyhät (esim. pääsiäinen ja juhannus)
-        function getEasterDate($year) {
-        $base = new DateTime("$year-03-21");
-        $days = easter_days($year);
-        return $base->add(new DateInterval("P{$days}D"));
-        }
-
-        $easter = getEasterDate($year)->format('m-d');
-        $holidays[$easter] = 'Pääsiäispäivä';
+        // Lisää liikkuvat pyhäpäivät (esim. pääsiäinen)
+        $year = date('Y');
+        $easter = easter_date($year);
+        $holidays[date('m-d', $easter)] = 'Pääsiäispäivä';
+        $holidays[date('m-d', strtotime('+1 day', $easter))] = 'Toinen pääsiäispäivä';
+        $holidays[date('m-d', strtotime('+39 days', $easter))] = 'Helatorstai';
+        $holidays[date('m-d', strtotime('+49 days', $easter))] = 'Helluntaipäivä';
 
         // Juhannuspäivä on kesäkuun 20. päivän jälkeinen lauantai
         $juhannuspaiva = new DateTime("June 20 $year");
         $juhannuspaiva->modify('next Saturday');
         $holidays[$juhannuspaiva->format('m-d')] = 'Juhannuspäivä';
-
 ?>
 <?php
         // Yhdistä tietokantaan (esimerkki MySQL)
@@ -85,35 +81,12 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
         if ($conn->connect_error) {
             die("Yhteys epäonnistui: " . $conn->connect_error);
         }
-        
-        // Käsittele lomakkeen lähetys
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $date = $_POST['date'];
-            $tapahtumat = $_POST['tapahtumat'];
-            $vapaat_ajat = $_POST['vapaat_ajat'];
+        // Hae POST-data
+        $tapahtumat = $_POST['tapahtumat'] ??''; // Tapahtumat
+        $vapaat_ajat = $_POST['vapaat_ajat'] ?? ''; // Vapaat ajat
 
-            if (!empty($tapahtumat)) {
-                $sql = "INSERT INTO tapahtumat (date, tapahtumat) VALUES ('$date', '$tapahtumat')";
-                echo $sql;
-                exit;
-                if ($conn->query($sql) === TRUE) {
-                    echo "Tapahtuma lisätty onnistuneesti";
-                } else {
-                    echo "Virhe: " . $sql . "<br>" . $conn->error;
-                }
-            }
-
-            if (!empty($vapaat_ajat)) {
-                $sql = "INSERT INTO vapaat_ajat (date, vapaat_ajat) VALUES ('$date', '$vapaat_ajat')";
-                if ($conn->query($sql) === TRUE) {
-                    echo "Vapaa aika lisätty onnistuneesti";
-                } else {
-                    echo "Virhe: " . $sql . "<br>" . $conn->error;
-                }
-            }
-        }
             // Näytä tapahtumat
-            $sql = "SELECT tapahtumat FROM tapahtumat WHERE date='$date'";
+            $sql = "SELECT tapahtumat FROM tapahtumat WHERE paivamaara='$date'";
             $result = $conn->query($sql);
             if ($result && $result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -122,7 +95,7 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
             }
 
             // Näytä vapaat ajat
-            $sql = "SELECT vapaat_ajat FROM vapaat_ajat WHERE date='$date'";
+            $sql = "SELECT vapaat_ajat FROM vapaat_ajat WHERE paivamaara='$date'";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -132,13 +105,11 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
             }
 
             // Näytä pyhät ja juhlat
-            if (array_key_exists($day_key, $holidays)) {
-                echo "<div class='holiday'>" . $holidays[$day_key] . "</div>";
+            if (array_key_exists($paivamaara, $holidays)) {
+                echo "<div class='holiday'>" . $holidays[$paivamaara] . "</div>";
             }
-
             echo "</div>";
-        
-?>
+        ?>
 <!DOCTYPE html>
 <html lang="fi">
 <head>
@@ -164,34 +135,25 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
         <button onclick="changeMonth(1)">Seuraava</button>
     </div> 
     <p><a href="admin_login.php">Admin kirjautuminen</a></p>
-    <div class='calendar'>
-        <div class='header'>
-            <div class='empty'></div> <!-- Tyhjä solu tuntien ja päivien väliin -->
+    <div class="header">
+    <div class="calendar">
             <?php foreach ($weekdays as $weekday): ?>
-                <div class='weekday'><?php echo $weekday; ?></div>
+                <div class="weekday"><?php echo $weekday; ?></div>
             <?php endforeach; ?>
-        </div>
-
-        <?php foreach ($hours as $hour): ?>
-             <div class='hour-row'>
-                <div class='hour'><?php echo str_pad($hour, 2, '0', STR_PAD_LEFT); ?>:00</div> 
                 <?php for ($day = 1; $day <= $daysInMonth; $day++): ?>
                     <?php
                     $class = 'day';
-                    if (in_array($day, $holidays)) {
-                        $class .= ' holiday';
-                    } elseif (in_array($day, $vapaat_ajat)) {
-                        $class .= 'vapaat_ajat';
-                    } elseif (in_array($day, $tapahtumat)) {
-                        $class .= 'tapahtumat';
+                    if (is_array($vapaat_ajat) && in_array($paivamaara, $vapaat_ajat)) {
+                        $class .= ' vapaat_ajat';
+                    } elseif (is_array($tapahtumat) && in_array($paivamaara, $tapahtumat)) {
+                        $class .= ' tapahtumat';
                     }
                     ?>
                     <button class='<?php echo $class; ?>' onclick='showTimeslots(<?php echo $day; ?>)'>
                         <?php echo $day; ?>
                     </button>
                 <?php endfor; ?>
-            </div>
-        <?php endforeach; ?>
+        </div>
     </div>
 
     <div class="timeslots" style="display: none;"></div>
