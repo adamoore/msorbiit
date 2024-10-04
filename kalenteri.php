@@ -84,7 +84,7 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
         // Hae POST-data
         $tapahtumat = $_POST['tapahtumat'] ??''; // Tapahtumat
         $vapaat_ajat = $_POST['vapaat_ajat'] ?? ''; // Vapaat ajat
-
+        //pitää lisätä päivämäärä muuttuja
             // Näytä tapahtumat
             $sql = "SELECT tapahtumat FROM tapahtumat WHERE paivamaara='$date'";
             $result = $conn->query($sql);
@@ -120,7 +120,6 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
     <script src="kalescripts.js" defer></script>
 </head>
 <body>
-    </html>
     <h1>Tapahtumakalenteri</h1>
     <h2><?php echo $currentMonth; ?></h2>
     <p>Selaa kalenteria nähdäksesi M/S Orbiit tapahtumat tai varaa aika Redsven's Ink Tatuointistudioon!</p><br>
@@ -134,7 +133,7 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
         <button onclick="changeMonth(-1)">Edellinen</button>
         <button onclick="changeMonth(1)">Seuraava</button>
     </div> 
-    <p><a href="admin_login.php">Admin kirjautuminen</a></p>
+    
     <div class="header">
     <div class="calendar">
             <?php foreach ($weekdays as $weekday): ?>
