@@ -1,7 +1,7 @@
 <?php
 $servername = "127.0.0.1"; // Korvaa tämä palvelimen IP-osoitteella
-$username = "hasse"; // Korvaa tämä luomallasi käyttäjänimellä
-$password = "salasana"; // Korvaa tämä luomallasi salasanalla
+$username = "root"; // Korvaa tämä luomallasi käyttäjänimellä
+$password = ""; // Korvaa tämä luomallasi salasanalla
 $dbname = "kalenteri"; // Korvaa tämä tietokannan nimellä
 $port = 3306; // Portti, oletuksena 3306
 

@@ -4,8 +4,7 @@ date_default_timezone_set('Europe/Helsinki');
 $currentMonth = date('F Y');
 $daysInMonth = date('t');
 $weekdays = ['Ma', 'Ti', 'Ke', 'To', 'Pe', 'La', 'Su'];
-?>
-<?php
+
 // Aseta oletuskuukausi ja -vuosi
 $month = date('m');
 $year = date('Y');
@@ -33,14 +32,14 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
         $day_of_week = ($day_of_week + 6) % 7; // Muuta viikon ensimmäinen päivä maanantaiksi
         $weekdays = ['Ma', 'Ti', 'Ke', 'To', 'Pe', 'La', 'Su'];
         
-        echo "<div class='calendar'>";
+        /*echo "<div class='calendar'>";
         for ($i = 0; $i < $day_of_week; $i++) {
         echo "<div class='day'></div>";
         }
         for ($day = 1; $day <= $days_in_month; $day++) {
         echo "<div class='day'>$day</div>";
         }
-        echo "</div>";    
+        echo "</div>";*/   
 
         // Suomalaiset pyhät ja juhlat (kiinteät)
         $holidays = [
@@ -147,6 +146,7 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
                     } elseif (is_array($tapahtumat) && in_array($paivamaara, $tapahtumat)) {
                         $class .= ' tapahtumat';
                     }
+                    
                     ?>
                     <button class='<?php echo $class; ?>' onclick='showTimeslots(<?php echo $day; ?>)'>
                         <?php echo $day; ?>
