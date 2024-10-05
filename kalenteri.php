@@ -107,6 +107,17 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
             if (array_key_exists($paivamaara, $holidays)) {
                 echo "<div class='holiday'>" . $holidays[$paivamaara] . "</div>";
             }
+
+            // Pyhäpäivien muunnin funktio? 
+            function muunnaPvm ($month, $day) {
+            return sprintf('%02d-%02d', $month, $day);
+            }
+            function pyha ($month, $day) {
+            $holidays = $GLOBALS['holidays'];
+            $indeksi = muunnaPvm($month, $day);
+            return isset($holidays[$indeksi]);
+            }
+
             echo "</div>";
         ?>
 <!DOCTYPE html>
@@ -146,7 +157,9 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
                     } elseif (is_array($tapahtumat) && in_array($paivamaara, $tapahtumat)) {
                         $class .= ' tapahtumat';
                     }
-                    
+                    if (pyha($month, $day)) {
+                        $class .= ' pyha';
+                    }
                     ?>
                     <button class='<?php echo $class; ?>' onclick='showTimeslots(<?php echo $day; ?>)'>
                         <?php echo $day; ?>

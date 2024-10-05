@@ -78,7 +78,7 @@ nav ul li {
     flex: 1;
     text-align: center;
     padding: 10px;
-    border: 3px solid #DD992C;
+    border: 3px solid #ffffffaf;
     font-weight: bold;
 }
 
@@ -120,7 +120,7 @@ nav ul li {
     margin-top: 5px;
     padding: 5px;
 }
-.holidays {
+.holidays .pyha {
     background-color: #FF817E;
     margin-top: 5px;
     padding: 5px;
@@ -133,8 +133,8 @@ nav ul li {
 
 .buttons {
     margin-bottom: 20px;
-    align-items: center;
 }
+
 .buttons button {
     margin-right: 10px;
     padding: 10px 20px;
@@ -143,6 +143,7 @@ nav ul li {
     background-color: #0099FF;
     font-family: 'Sofadi One', system-ui;
 }
+
 .navigation {
     margin-bottom: 20px;
 }
