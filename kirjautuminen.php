@@ -1,10 +1,7 @@
 <?php include 'header.php'; ?>
 <?php
 session_start();
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "kalenteri";
+include 'connect.php';
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -16,14 +13,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT id, password FROM users WHERE username='$username'";
+    $sql = "SELECT kayttajatunnus, password FROM users WHERE username='$kayttajatunnus'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         if (password_verify($password, $row['password'])) {
             $_SESSION['user_id'] = $row['id'];
-            header("Location: kalenteri.php");
+            header("Location: kasittelija_login.php");
         } else {
             echo "Virheellinen salasana";
         }
@@ -43,7 +40,7 @@ $conn->close();
 </head>
 <body>
     <h1>Kirjaudu</h1>
-    <form action="login.php" method="post">
+    <form action="kirjautuminen.php" method="post">
         <label for="username">Käyttäjätunnus:</label>
         <input type="text" id="username" name="username" required><br>
         <p>Käyttäjätunnuksesi on sähköpostiosoitteesi. Jos sinulla ei ole käyttäjätunnusta, rekisteröidythän ensin.</p>
@@ -51,8 +48,8 @@ $conn->close();
         <input type="password" id="password" name="password" required><br>
         <p>Salasanasi on se, jonka annoit rekisteröityessäsi.</p>
         <input type="submit" value="Kirjaudu" class="nappi"> <br>
-        <input type="submit" value="Rekisteröidy" class="nappi">
-        <a href="">Unohditko salasanasi?</a>
+        <input type = "submit" value="rekisteroidy" class="nappi"> <a href="rekisterointi.php" value="Rekisteröidy" class="nappi">Rekisteröidy</a>
+        <a href="reset_password.php">Unohditko salasanasi?</a>
     </form>
 </body>
 </html>

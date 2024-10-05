@@ -46,6 +46,7 @@ nav ul li {
     margin: 0 auto;
     float: center;
     border: 5px solid #FFFC99;
+    font-style:'Sofadi One', system-ui;
 }
 
 .biit .tapahtumat {
@@ -106,12 +107,12 @@ nav ul li {
     padding: 10px;
     text-align: center;
     border-radius: 5px;
-    background-color: #c7b2eeaf;
+    background-color: #ffffffaf;
     color: #000;
 }
 
 .slot {
-    background-color: #c7b2eeaf;
+    background-color: #ffffffaf;
 }
 
 .tapahtumat {
