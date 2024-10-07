@@ -8,6 +8,23 @@
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Unlock', serif;
+    font-size: 45px;
+    text-align: center;
+}
+
+.info {
+    background-color: #A7DDAC;
+    color: #496E4B;
+    padding: 10px;
+    text-align: center;
+    border: 3px solid #FFFC99;
+    border-radius: 30px;
+}
+
+.toniannika {
+    border: 3px solid #133667;
+    border-radius: 30px;
+    background-color: #A7DDAC;
 }
 
 nav {

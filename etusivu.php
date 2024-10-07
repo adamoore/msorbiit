@@ -3,16 +3,12 @@
 <!DOCTYPE html>
 <html lang="en fi">
 <body>
+    <h1>M/S Orbiit</h1>
+        <div class="info">
+            <p> Hello, I am Toni and I am Annika. Welcome to M/S Orbiit!</p>
+            <img src="msorbiitkuvat/annikatoniredsven.jpeg" alt="Kuva Tonista ja Annikasta" class="toniannika"> 
+        </div>
 
-    <main>
-        <h1>M/S Orbiit ETUSIVU</h1>
-        <p> MINÄ TESTAAN TÄTÄ muutos 1
-        TESTING TESTING ONE TWO THREE FOUR
-        THIS TEXT IS FOR YOU TO EXPLORE
-        </p>
-
-    </main>
-
-<?php include 'footer.php'; ?>
 </body>
 </html>
+<?php include 'footer.php'; ?>

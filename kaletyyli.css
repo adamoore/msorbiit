@@ -37,6 +37,19 @@ nav ul li {
     text-decoration: none;
 }
 
+h1, h2 {
+    text-align: center;
+}
+
+.info {
+    background-color: #A7DDAC;
+    color: #496E4B;
+    padding: 10px;
+    text-align: center;
+    border: 3px solid #FFFC99;
+    border-radius: 30px;
+}
+
 .calendar {
     display: grid;
     grid-template-columns: 100px repeat(7, 1fr);
@@ -47,6 +60,8 @@ nav ul li {
     float: center;
     border: 5px solid #FFFC99;
     font-style:'Sofadi One', system-ui;
+    width: 80%;
+    height: 100vh;
 }
 
 .biit .tapahtumat {
@@ -78,8 +93,9 @@ nav ul li {
     flex: 1;
     text-align: center;
     padding: 10px;
-    border: 3px solid #ffffffaf;
+    border: 3px solid #133667;
     font-weight: bold;
+    font-size: 25px;
 }
 
 .day {
@@ -88,7 +104,8 @@ nav ul li {
     text-align: center;
     background-color: #D3F6DB;
     color: #133667; 
-    font-style:'Sofadi One', system-ui;
+    font-family:'Sofadi One', system-ui;
+    font-size: 20px;
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
@@ -107,12 +124,12 @@ nav ul li {
     padding: 10px;
     text-align: center;
     border-radius: 5px;
-    background-color: #ffffffaf;
+    background-color: white;
     color: #000;
 }
 
 .slot {
-    background-color: #ffffffaf;
+    background-color: white;
 }
 
 .tapahtumat {
@@ -133,6 +150,8 @@ nav ul li {
 
 .buttons {
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
 }
 
 .buttons button {
@@ -140,12 +159,16 @@ nav ul li {
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 5px;
-    background-color: #0099FF;
+    background-color: #DD992C;
     font-family: 'Sofadi One', system-ui;
+    display: flex;
+    justify-content: center;
 }
 
 .navigation {
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
 }
 .navigation button {
     margin-right: 10px;
@@ -155,7 +178,10 @@ nav ul li {
     background-color: #133667;
     color: #FFFC99;
     font-family: 'Sofadi One', system-ui;
+    display: flex;
+    justify-content: center;
 }
+
 footer {
     text-align: center;
 }

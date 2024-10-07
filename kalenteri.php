@@ -30,16 +30,7 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
         $days_in_month = date('t', $first_day_of_month);
         $day_of_week = date('w', $first_day_of_month);
         $day_of_week = ($day_of_week + 6) % 7; // Muuta viikon ensimmäinen päivä maanantaiksi
-        $weekdays = ['Ma', 'Ti', 'Ke', 'To', 'Pe', 'La', 'Su'];
-        
-        /*echo "<div class='calendar'>";
-        for ($i = 0; $i < $day_of_week; $i++) {
-        echo "<div class='day'></div>";
-        }
-        for ($day = 1; $day <= $days_in_month; $day++) {
-        echo "<div class='day'>$day</div>";
-        }
-        echo "</div>";*/   
+        $weekdays = ['Ma', 'Ti', 'Ke', 'To', 'Pe', 'La', 'Su'];   
 
         // Suomalaiset pyhät ja juhlat (kiinteät)
         $holidays = [
@@ -54,6 +45,23 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
             '12-25' => 'Joulupäivä',
             '12-26' => 'Tapaninpäivä'
         ];
+        
+        // Funktio kiinteiden pyhäpäivien laskemiseksi
+        function getFixedHolidays($year) {
+            $holidays = [
+                '01-01' => 'Uudenvuodenpäivä',
+                '06-01' => 'Loppiainen',
+                '04-30' => 'Vappuaatto',
+                '05-01' => 'Vappu',
+                '06-24' => 'Juhannusaatto',
+                '06-25' => 'Juhannuspäivä',
+                '12-06' => 'Itsenäisyyspäivä',
+                '12-24' => 'Jouluaatto',
+                '12-25' => 'Joulupäivä',
+                '12-26' => 'Tapaninpäivä'
+            ];
+            return $holidays;
+        }
 
         // Lisää liikkuvat pyhäpäivät (esim. pääsiäinen)
         $year = date('Y');
@@ -67,6 +75,34 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
         $juhannuspaiva = new DateTime("June 20 $year");
         $juhannuspaiva->modify('next Saturday');
         $holidays[$juhannuspaiva->format('m-d')] = 'Juhannuspäivä';
+
+        //Funktio liikkuvien pyhäpäivien laskemiseksi
+        function getMovableHolidays($year) {
+            $holidays = [];
+        
+            // Pääsiäinen
+            $easter = easter_date($year);
+            $holidays[date('m-d', $easter)] = 'Pääsiäispäivä';
+            $holidays[date('m-d', strtotime('+1 day', $easter))] = 'Toinen pääsiäispäivä';
+            $holidays[date('m-d', strtotime('+39 days', $easter))] = 'Helatorstai';
+            $holidays[date('m-d', strtotime('+49 days', $easter))] = 'Helluntaipäivä';
+        
+            // Juhannuspäivä on kesäkuun 20. päivän jälkeinen lauantai
+            $juhannuspaiva = new DateTime("June 20 $year");
+            $juhannuspaiva->modify('next Saturday');
+            $holidays[$juhannuspaiva->format('m-d')] = 'Juhannuspäivä';
+                
+            return $holidays;
+        }
+        
+        // Yhdistä kiinteät ja liikkuvat pyhäpäivät
+        function getAllHolidays($year) {
+        return array_merge(getFixedHolidays($year), getMovableHolidays($year));
+        }
+
+        // Hae pyhäpäivät tälle vuodelle
+        $year = date('Y');
+        $holidays = getAllHolidays($year);
 ?>
 <?php
         // Yhdistä tietokantaan (esimerkki MySQL)
@@ -83,7 +119,7 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
         // Hae POST-data
         $tapahtumat = $_POST['tapahtumat'] ??''; // Tapahtumat
         $vapaat_ajat = $_POST['vapaat_ajat'] ?? ''; // Vapaat ajat
-        //pitää lisätä päivämäärä muuttuja
+
             // Näytä tapahtumat
             $sql = "SELECT tapahtumat FROM tapahtumat WHERE paivamaara='$date'";
             $result = $conn->query($sql);
@@ -104,14 +140,20 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
             }
 
             // Näytä pyhät ja juhlat
-            if (array_key_exists($paivamaara, $holidays)) {
-                echo "<div class='holiday'>" . $holidays[$paivamaara] . "</div>";
+            //if (array_key_exists($paivamaara, $holidays)) {
+              //  echo "<div class='holiday'>" . $holidays[$paivamaara] . "</div>";
+            //}
+
+            // Näytä pyhät ja juhlat v.2UUSI
+            if (array_key_exists(date('m-d', strtotime($date)), $holidays)) {
+            echo "<div class='holiday'>" . $holidays[date('m-d', strtotime($date))] . "</div>";
             }
 
-            // Pyhäpäivien muunnin funktio? 
+            // Pyhäpäivien muunnin funktio
             function muunnaPvm ($month, $day) {
             return sprintf('%02d-%02d', $month, $day);
             }
+            
             function pyha ($month, $day) {
             $holidays = $GLOBALS['holidays'];
             $indeksi = muunnaPvm($month, $day);
@@ -131,10 +173,12 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
 </head>
 <body>
     <h1>Tapahtumakalenteri</h1>
-    <h2><?php echo $currentMonth; ?></h2>
+    <div class="info">
     <p>Selaa kalenteria nähdäksesi M/S Orbiit tapahtumat tai varaa aika Redsven's Ink Tatuointistudioon!</p><br>
     <p>Jonotusaika studiolle on arviolta 2-3 kuukautta.</p><br>    
     <p>Ajanvaraus vaatii sisäänkirjautumisen tai rekisteröitymisen omalla sähköpostiosoitteella.</p>
+    </div>
+    <h2><?php echo $currentMonth; ?></h2>
     <div class="buttons">
         <button onclick="setMode('biit')">Tapahtumat</button>
         <button onclick="setMode('rink')">Ajanvaraus</button>
