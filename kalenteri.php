@@ -26,11 +26,11 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
         $paivamaara = date('d-m-Y');
         
         // Generoi kalenterin sisältö
-        $first_day_of_month = mktime(0, 0, 0, $month, 1, $year);
+        $first_day_of_month = mktime(0, 0, 0, $month, 1, $year); //tarkista tämän yhteensopivuus kalenterin kanssa
         $days_in_month = date('t', $first_day_of_month);
         $day_of_week = date('w', $first_day_of_month);
         $day_of_week = ($day_of_week + 6) % 7; // Muuta viikon ensimmäinen päivä maanantaiksi
-        $weekdays = ['Ma', 'Ti', 'Ke', 'To', 'Pe', 'La', 'Su'];   
+        $weekdays = ['Ma', 'Ti', 'Ke', 'To', 'Pe', 'La', 'Su'];   //Tarvitseeko weekdaysit olla tuplana?
 
         // Suomalaiset pyhät ja juhlat (kiinteät)
         $holidays = [
@@ -45,20 +45,20 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
             '12-25' => 'Joulupäivä',
             '12-26' => 'Tapaninpäivä'
         ];
-        
+        //Tarvitseeko näihin määrittää pp-kk-vv?
         // Funktio kiinteiden pyhäpäivien laskemiseksi
         function getFixedHolidays($year) {
             $holidays = [
-                '01-01' => 'Uudenvuodenpäivä',
-                '06-01' => 'Loppiainen',
-                '04-30' => 'Vappuaatto',
-                '05-01' => 'Vappu',
-                '06-24' => 'Juhannusaatto',
-                '06-25' => 'Juhannuspäivä',
-                '12-06' => 'Itsenäisyyspäivä',
-                '12-24' => 'Jouluaatto',
-                '12-25' => 'Joulupäivä',
-                '12-26' => 'Tapaninpäivä'
+                "01-01-$year" => "Uudenvuodenpäivä",
+                "06-01-$year" => "Loppiainen",
+                "30-04-$year" => "Vappuaatto",
+                "01-05-$year" => "Vappu",
+                "24-06-$year" => "Juhannusaatto",
+                "25-06-$year" => "Juhannuspäivä",
+                "06-12-$year" => "Itsenäisyyspäivä",
+                "24-12-$year" => "Jouluaatto",
+                "25-12-$year" => "Joulupäivä",
+                "26-12-$year" => "Tapaninpäivä",
             ];
             return $holidays;
         }
@@ -82,15 +82,15 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
         
             // Pääsiäinen
             $easter = easter_date($year);
-            $holidays[date('m-d', $easter)] = 'Pääsiäispäivä';
-            $holidays[date('m-d', strtotime('+1 day', $easter))] = 'Toinen pääsiäispäivä';
-            $holidays[date('m-d', strtotime('+39 days', $easter))] = 'Helatorstai';
-            $holidays[date('m-d', strtotime('+49 days', $easter))] = 'Helluntaipäivä';
+            $holidays[date('d-m-Y', $easter)] = 'Pääsiäispäivä';
+            $holidays[date('d-m-Y', strtotime('+1 day', $easter))] = 'Toinen pääsiäispäivä';
+            $holidays[date('d-m-Y', strtotime('+39 days', $easter))] = 'Helatorstai';
+            $holidays[date('d-m-Y', strtotime('+49 days', $easter))] = 'Helluntaipäivä';
         
             // Juhannuspäivä on kesäkuun 20. päivän jälkeinen lauantai
             $juhannuspaiva = new DateTime("June 20 $year");
             $juhannuspaiva->modify('next Saturday');
-            $holidays[$juhannuspaiva->format('m-d')] = 'Juhannuspäivä';
+            $holidays[$juhannuspaiva->format('d-m-Y')] = 'Juhannuspäivä';
                 
             return $holidays;
         }
@@ -100,7 +100,7 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
         return array_merge(getFixedHolidays($year), getMovableHolidays($year));
         }
 
-        // Hae pyhäpäivät tälle vuodelle
+        // Hae pyhäpäivät tälle vuodelle -- Pitäisikö muuttujan olla paivamaara eikä year?
         $year = date('Y');
         $holidays = getAllHolidays($year);
 ?>
@@ -153,7 +153,7 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
             function muunnaPvm ($month, $day) {
             return sprintf('%02d-%02d', $month, $day);
             }
-            
+
             function pyha ($month, $day) {
             $holidays = $GLOBALS['holidays'];
             $indeksi = muunnaPvm($month, $day);

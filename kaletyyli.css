@@ -52,7 +52,7 @@ h1, h2 {
 
 .calendar {
     display: grid;
-    grid-template-columns: 100px repeat(7, 1fr);
+    grid-template-columns: repeat(7, 1fr);
     gap: 10px;
     background-color: #A7DDAC;
     color: #133667;
