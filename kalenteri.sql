@@ -98,4 +98,15 @@ CREATE TABLE IF NOT EXISTS `signup_tokens` (
   FOREIGN KEY (`kayttajatunnus`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- Lisää sarakkeet `users`-tauluun
+ALTER TABLE `users`
+ADD COLUMN `etunimi` varchar(50) DEFAULT NULL,
+ADD COLUMN `sukunimi` varchar(50) DEFAULT NULL,
+ADD COLUMN `puhelinnumero` varchar(15) DEFAULT NULL,
+ADD COLUMN `aktiivinen` tinyint(1) DEFAULT 1;
+
+-- Lisää sarake `aktiivinen` `roles`-tauluun
+ALTER TABLE `roles`
+ADD COLUMN `aktiivinen` tinyint(1) DEFAULT 1;
+
 COMMIT;

@@ -11,8 +11,8 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<style>
 		.carousel-inner > .item > img {
-			width: 50%;
-			height: 50%;
+			width: 80%;
+			height: 150vh;
 			border-radius: 50px;
 			border: 5px solid #133667;
 			margin: auto;
@@ -85,7 +85,6 @@
 		<span class="sr-only">Next</span>
 	</a>
 </div>
-
 </body>
 </html>
 <?php include 'footer.php'; ?>

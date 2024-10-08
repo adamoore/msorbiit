@@ -149,7 +149,7 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
             echo "<div class='holiday'>" . $holidays[date('m-d', strtotime($date))] . "</div>";
             }
 
-            // Pyhäpäivien muunnin funktio
+            // Pyhäpäivien muunnin funktio (Jukka)
             function muunnaPvm ($month, $day) {
             return sprintf('%02d-%02d', $month, $day);
             }

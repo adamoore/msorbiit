@@ -1,20 +1,11 @@
-<?php include 'header.php'; ?>
-<?php
+<?php 
+include 'header.php'; 
+include 'db.php';
+
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
-}
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "kalenteri";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Yhteys epäonnistui: " . $conn->connect_error);
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -22,14 +13,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $paivamaara = $_POST['paivamaara'];
     $aika = $_POST['aika'];
 
-    $sql = "INSERT INTO varaukset (user_id, paivamaara, aika) VALUES ('$user_id', '$paivamaara', '$aika')";
+    $sql = "INSERT INTO varaukset (kayttajatunnus, paivamaara, aika) VALUES ('$kayttajatunnus', '$paivamaara', '$aika')";
 
     if ($conn->query($sql) === TRUE) {
         // Lähetä sähköpostivahvistus
         $to = $_SESSION['email'];
         $subject = "Varausvahvistus";
         $message = "Varaus on tehty onnistuneesti päivämäärälle $paivamaara klo $aika.";
-        $headers = "From: no-reply@msorbiit.com";
+        $headers = "From: msorbiit1981@gmail.com";
 
         mail($to, $subject, $message, $headers);
 
@@ -57,7 +48,7 @@ $conn->close();
         <label for="aika">Aika:</label>
         <input type="time" id="aika" name="aika" required><br>
         
-        <input type="submit" value="Varaa">
+        <input type="submit" value="Varaa" name="painike">
     </form>
 </body>
 </html>
