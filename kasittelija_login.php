@@ -1,5 +1,4 @@
-<?php
-/* ALOITUS */   
+<?php  
 $display = "d-none";
 $message = "";
 $success = "success";
@@ -24,7 +23,7 @@ if (isset($_POST['painike'])){
    $rememberme = isset($rememberme) ? true : false;
    if ($errors) debuggeri($errors);
    if (!$errors){
-      $query = "SELECT id,password,is_active,name FROM users LEFT JOIN roles ON role = roles.id WHERE email = '$email'";
+      $query = "SELECT id,password,aktiivinen,name FROM users LEFT JOIN roles ON role = roles.id WHERE email = '$email'";
       debuggeri($query);
       $result = $yhteys->query($query);
       if (!$result) die("Tietokantayhteys ei toimi: ".mysqli_error($connection));
@@ -35,9 +34,9 @@ if (isset($_POST['painike'])){
          $display = "d-block";
          }
       else {
-         [$id,$password_hash,$is_active,$role] = $result->fetch_row();
+         [$id,$password_hash,$aktiivinen,$role] = $result->fetch_row();
          if (password_verify($password, $password_hash)){
-            if ($is_active){
+            if ($aktiivinen){
                if (!session_id()) session_start();
                $_SESSION["loggedIn"] = $role;
                if ($rememberme) rememberme($id);

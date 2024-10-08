@@ -6,7 +6,7 @@ $LINKKI_RESETPASSWORD = "reset_password.php";
 $LINKKI_VERIFICATION = "verification.php";
 //$PALVELUOSOITE = "asiakaspalvelu@msorbiit.fi";
 
-define("OLETUSSIVU","profiili.php");
+define("OLETUSSIVU","etusivu.php");
 define("PROFIILIKUVAKANSIO","profiilikuvat");
 define("PROFIILIKUVAKOKO",5242880);
 

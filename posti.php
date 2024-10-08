@@ -24,15 +24,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			die("Yhteys epäonnistui: " . $conn->connect_error);
 		}
 
-		$stmt = $conn->prepare("INSERT INTO users (firstname, lastname, email, salasana) VALUES (?, ?, ?, ?)");
-		$stmt->bind_param("ssss", $_POST['firstname'], $_POST['lastname'], $_POST['email'], password_hash($_POST['salasana'], PASSWORD_DEFAULT));
+		$stmt = $conn->prepare("INSERT INTO users (etunimi, sukunimi, email, salasana) VALUES (?, ?, ?, ?)");
+		$stmt->bind_param("ssss", $_POST['etunimi'], $_POST['sukunimi'], $_POST['email'], password_hash($_POST['salasana'], PASSWORD_DEFAULT));
 		$stmt->execute();
 		$stmt->close();
 
 		// Lähetä vahvistusviesti seuraava on verification.php
 		$to = $_POST['email'];
 		$subject = "Vahvista sähköpostiosoitteesi";
-		$message = "Hei " . $_POST['firstname'] . ",\n\nKiitos rekisteröitymisestä! Vahvista sähköpostiosoitteesi klikkaamalla alla olevaa linkkiä:\n\n";
+		$message = "Hei " . $_POST['etunimi'] . ",\n\nKiitos rekisteröitymisestä! Vahvista sähköpostiosoitteesi klikkaamalla alla olevaa linkkiä:\n\n";
 		$message .= "http://yourwebsite.com/vahvista.php?email=" . urlencode($to) . "&token=" . urlencode($token);
 		$headers = "From: no-reply@yourwebsite.com";
 

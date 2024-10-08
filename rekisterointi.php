@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include 'connect.php';
+include 'db.php';
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 

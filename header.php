@@ -44,7 +44,7 @@
                 <li><a href="kalenteri.php">Kalenteri</a></li>
                 <li><a href="galleriaink.php">Redsven's Ink Galleria</a></li>
                 <li><a href="kirjautuminen.php">Kirjaudu</a></li>
-                <li><a href="rekisterointi.php">Rekisteröidy</a></li>
+                <li><a href="rekisteroitymislomake.php">Rekisteröidy</a></li>
             </ul>
         </nav>
         <div class="theater-background">

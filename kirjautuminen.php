@@ -1,26 +1,32 @@
-<?php include 'header.php'; ?>
 <?php
 session_start();
-include 'connect.php';
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Yhteys epäonnistui: " . $conn->connect_error);
+include 'db.php';
+include 'header.php';
+ 
+if (isset($_SESSION['user_id'])) {
+    header("Location: kasittelija_login.php");
+    exit();
 }
-
+ 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    $sql = "SELECT kayttajatunnus, password FROM users WHERE username='$kayttajatunnus'";
-    $result = $conn->query($sql);
-
+    $kayttajatunnus = $_POST['username'];
+    $salasana = $_POST['password'];
+ 
+    // Valmisteleva lause SQL-injektion estämiseksi
+    $stmt = $conn->prepare("SELECT u.id, u.kayttajatunnus, u.salasana, r.value FROM users u
+                            JOIN roles r ON u.id = r.id
+                            WHERE u.kayttajatunnus = ?");
+    $stmt->bind_param("s", $kayttajatunnus);
+    $stmt->execute();
+    $result = $stmt->get_result();
+ 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        if (password_verify($password, $row['password'])) {
+        if (password_verify($salasana, $row['salasana'])) {
             $_SESSION['user_id'] = $row['id'];
+            $_SESSION['role'] = $row['value'];
             header("Location: kasittelija_login.php");
+            exit();
         } else {
             echo "Virheellinen salasana";
         }
@@ -28,7 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Käyttäjänimiä ei löydy";
     }
 }
-
 $conn->close();
 ?>
 <!DOCTYPE html>

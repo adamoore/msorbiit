@@ -1,20 +1,40 @@
-<?php include 'header.php'; ?>
 <?php
+include 'db.php';
+include 'header.php';
+ 
 session_start();
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-
+ 
+   
     // Tarkista käyttäjätunnus ja salasana (esimerkki kovakoodattu)
-    if ($username == 'admin' && $password == 'adminpassword') {
-        $_SESSION['admin'] = true;
-        header('Location: kalenteri.php');
-        exit();
+    $stmt = $yhteys->prepare("SELECT u.id, u.salasana, r.value FROM users u
+                              JOIN roles r ON u.id = r.id
+                              WHERE u.kayttajatunnus = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+ 
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        if (password_verify($password, $row['salasana'])) {
+            if ($row['value'] == 3) {
+                $_SESSION['admin'] = true;
+                header('Location: kasittelija_login.php');
+                exit();
+            } else {
+                $error = "Sinulla ei ole oikeuksia kirjautua sisään.";
+            }
+        } else {
+            $error = "Väärä käyttäjätunnus tai salasana.";
+        }
     } else {
         $error = "Väärä käyttäjätunnus tai salasana.";
     }
 }
 ?>
+ 
 <!DOCTYPE html>
 <html lang="fi">
 <head>
@@ -33,10 +53,9 @@ if (isset($_POST['login'])) {
         <input type="password" id="password" name="password" required>
         <button type="submit" name="login">Kirjaudu</button>
     </form>
-
-    <!-- Alla oleva admin form otettu kalenteri.php:stä -->
     <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] == true): ?>
-    <form action="kalenteri.php" method="post">
+    <h2>Lisää tapahtuma tai vapaa aika</h2>
+    <form action="admin_login.php" method="post">
         <label for="date">Päivämäärä:</label>
         <input type="date" id="date" name="date" required>
         <label for="tapahtumat">Tapahtumat:</label>
@@ -45,34 +64,35 @@ if (isset($_POST['login'])) {
         <input type="text" id="vapaat_ajat" name="vapaat_ajat">
         <button type="submit">Lisää</button>
     </form>
-    <?php else: ?>
-
-        <!--Jos admin haluaa lisätä tapahtuman tai vapaan ajan?
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $date = $_POST['date'];
-            $tapahtumat = $_POST['tapahtumat'];
-            $vapaat_ajat = $_POST['vapaat_ajat'];
-
-            if (!empty($tapahtumat)) {
-                $sql = "INSERT INTO tapahtumat (paivamaara, tapahtumat) VALUES ('$paivamaara', '$tapahtumat')";
-                echo $sql;
-                exit;
-                if ($conn->query($sql) === TRUE) {
-                    echo "Tapahtuma lisätty onnistuneesti";
-                } else {
-                    echo "Virhe: " . $sql . "<br>" . $conn->error;
-                }
+    <?php endif: ?>
+<?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $date = $_POST['date'];
+        $tapahtumat = $_POST['tapahtumat'];
+        $vapaat_ajat = $_POST['vapaat_ajat'];
+ 
+        if (!empty($tapahtumat)) {
+            $stmt = $yhteys->prepare("INSERT INTO tapahtumat (paivamaara, tapahtumat) VALUES (?, ?)");
+            $stmt->bind_param("ss", $date, $tapahtumat);
+            if ($stmt->execute()) {
+                echo "Tapahtuma lisätty onnistuneesti";
+            } else {
+                echo "Virhe: " . $stmt->error;
             }
-
-            if (!empty($vapaat_ajat)) {
-                $sql = "INSERT INTO vapaat_ajat (paivamaara, vapaat_ajat) VALUES ('$date', '$vapaat_ajat')";
-                if ($conn->query($sql) === TRUE) {
-                    echo "Vapaa aika lisätty onnistuneesti";
-                } else {
-                    echo "Virhe: " . $sql . "<br>" . $conn->error;
-                }
+            $stmt->close();
+        }
+ 
+        if (!empty($vapaat_ajat)) {
+            $stmt = $yhteys->prepare("INSERT INTO vapaat_ajat (paivamaara, vapaat_ajat) VALUES (?, ?)");
+            $stmt->bind_param("ss", $date, $vapaat_ajat);
+            if ($stmt->execute()) {
+                echo "Vapaa aika lisätty onnistuneesti";
+            } else {
+                echo "Virhe: " . $stmt->error;
             }
-        }*/-->
-
+            $stmt->close();
+        }
+    }
+    ?>
 </body>
-</html> 
+</html>
