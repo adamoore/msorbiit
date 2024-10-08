@@ -1,6 +1,10 @@
 <?php
 session_start();
 include 'db.php';
+
+$admin_mail = 'msorbiit1981@gmail.com';
+$username_mailtrap = 'msorbiit1981@gmail.com';
+$password_mailtrap = 'peruna88';
  
  // Käyttäjän rekisteröinti
 if (isset($_POST['rekisterointi'])) {
