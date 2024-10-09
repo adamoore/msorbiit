@@ -1,4 +1,4 @@
-<?php include 'header.php'; ?>
+<?php include 'rinkheader.php'; ?>
 
 <!DOCTYPE html>
 <html lang="fi">
@@ -11,12 +11,12 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<style>
 		.carousel-inner > .item > img {
-			width: 80%;
-			height: 150vh;
+			width: 50%;
+			height: 100vh;
 			border-radius: 50px;
-			border: 5px solid #133667;
+			border: 5px solid #72004e;
 			margin: auto;
-			background-color: #496E4B;
+			background-color: #c165d8;
 		}
 	</style>
 </head>
@@ -31,9 +31,6 @@
 		<li data-target="#myCarousel" data-slide-to="3"></li>
 		<li data-target="#myCarousel" data-slide-to="4"></li>
 		<li data-target="#myCarousel" data-slide-to="5"></li>
-		<li data-target="#myCarousel" data-slide-to="6"></li>
-		<li data-target="#myCarousel" data-slide-to="7"></li>
-		<li data-target="#myCarousel" data-slide-to="8"></li>
 	</ol>
 
 	<!-- Wrapper for slides -->
@@ -57,23 +54,6 @@
 		<div class="item">
 			<img src="msorbiitkuvat/annika.jpeg" alt="Annika Redsven">
 		</div>
-
-		<div class="item">
-			<img src="msorbiitkuvat/laiva6.jpg" alt="Laiva 6">
-		</div>
-
-		<div class="item">
-			<img src="msorbiitkuvat/laiva7.jpg" alt="Laiva 7">
-		</div>
-
-		<div class="item">
-			<iframe src="https://www.tiktok.com/@annikaredsven/video/7337721387081059616?is_from_webapp=1&sender_device=pc" alt="Tatuointi video käsivarsi> </iframe>
-		</div>
-
-		<div class="item">
-        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@annikaredsven" data-unique-id="annikaredsven" data-embed-type="creator" style="max-width: 780px; min-width: 288px;" > <section> <a target="_blank" href="https://www.tiktok.com/@annikaredsven?refer=creator_embed">@annikaredsven</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
-		</div>
-	</div>
 
 	<!-- Left and right controls -->
 	<a class="left carousel-control" href="#myCarousel" data-slide="prev" style="height:100%">
