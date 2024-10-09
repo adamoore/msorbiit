@@ -4,7 +4,7 @@
     <title>Historia</title>
 <body>
         <h1>HISTORIA</h1>
-        <div class="historia">
+        <div class="info">
         <p> MS Orbiit on rakennettu Ukrainassa vanhassa Neuvostoliitossa vuonna 1981. <br>
          Se on ollut vakoilualuksena sekä sukellustukialuksena. 
         Suomessa laiva on ollut edellisillä omistajilla 2000-luvun alusta saakka. Sitä ennen se oli Viron puolella.</p>

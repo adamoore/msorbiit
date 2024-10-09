@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M/S Orbiit</title>
-    <link rel="stylesheet" href="site.css">
+    <title>Redsven's Ink Tatutointistudio</title>
+    <link rel="stylesheet" href="rinksite.css">
     <!-- Navin fontti -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,8 +19,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Unlock&display=swap" rel="stylesheet">
     <style>
         .theater-background {
-            background-image: url('msorbiitkuvat/msorbiit2.jpg'); /* Theater background pitääkin olla headerissä toimiakseen*/
-            background-size: cover; /*Laitoin tämän vanhan kuvan, ennen kuin saadaan uusi */
+            background-image: url('msorbiitkuvat/rink.jpg'); 
+            background-size: cover;
             background-position: center;
             width: 100%;
             height: 500px; 
@@ -41,10 +41,10 @@
         <nav>
             <ul>
                 <li><a href="redsvensink.php">Redsven's Ink Tatuointistudio</a></li>
-                <li><a href="kalenteri.php">Kalenteri</a></li>
+                <li><a href="kalenteri.php">Ajanvaraus</a></li>
                 <li><a href="galleriaink.php">Redsven's Ink Galleria</a></li>
                 <li><a href="kirjautuminen.php">Kirjaudu</a></li>
-                <li><a href="rekisteroitymislomake.php">Rekisteröidy</a></li>
+                <li><a href="rekisterointi.php">Rekisteröidy</a></li>
             </ul>
         </nav>
         <div class="theater-background">
@@ -52,4 +52,3 @@
     </body>
 </head>
 </html>
-  

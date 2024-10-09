@@ -11,7 +11,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<style>
 		.carousel-inner > .item > img {
-			width: 75%;
+			width: 80%;
 			height: 150vh;
 			border-radius: 50px;
 			border: 5px solid #133667;
@@ -39,23 +39,23 @@
 	<!-- Wrapper for slides -->
 	<div class="carousel-inner">
 		<div class="item active">
-			<img src="msorbiitkuvat/laiva1edit.jpg" alt="Laiva 1">
+			<img src="msorbiitkuvat/rink.jpg" alt="Annika ja laiva">
 		</div>
 
 		<div class="item">
-			<img src="msorbiitkuvat/laiva2edit.jpg" alt="Laiva 2">
+			<img src="msorbiitkuvat/tatska1.jpeg" alt="Tatutointi 1">
 		</div>
 
 		<div class="item">
-			<img src="msorbiitkuvat/laiva3edit.jpg" alt="Laiva 3">
+			<img src="msorbiitkuvat/tatska2.jpeg" alt="Tatuointi 2">
 		</div>
 
 		<div class="item">
-			<img src="msorbiitkuvat/laiva4.jpg" alt="Laiva 4">
+			<img src="msorbiitkuvat/tatska3.jpeg" alt="Tatuointi 3">
 		</div>
 
 		<div class="item">
-			<img src="msorbiitkuvat/laiva5.jpg" alt="Laiva 5">
+			<img src="msorbiitkuvat/annika.jpeg" alt="Annika Redsven">
 		</div>
 
 		<div class="item">
@@ -67,11 +67,11 @@
 		</div>
 
 		<div class="item">
-			<img src="msorbiitkuvat/ohjaamo.jpg" alt="Laivan ohjaamo">
+			<iframe src="https://www.tiktok.com/@annikaredsven/video/7337721387081059616?is_from_webapp=1&sender_device=pc" alt="Tatuointi video käsivarsi> </iframe>
 		</div>
 
 		<div class="item">
-			<img src="msorbiitkuvat/poster.jpg" alt="Posteri">
+        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@annikaredsven" data-unique-id="annikaredsven" data-embed-type="creator" style="max-width: 780px; min-width: 288px;" > <section> <a target="_blank" href="https://www.tiktok.com/@annikaredsven?refer=creator_embed">@annikaredsven</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
 		</div>
 	</div>
 

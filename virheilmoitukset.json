@@ -1,0 +1,9 @@
+{
+    "etunimi": "Etunimi on pakollinen.",
+    "sukunimi": "Sukunimi on pakollinen.",
+    "puhelin": "Puhelinnumero on pakollinen.",
+    "email": "Sähköpostiosoite on pakollinen.",
+    "email_invalid": "Sähköpostiosoite ei ole kelvollinen.",
+    "salasana": "Salasana on pakollinen.",
+    "salasana_eitasmaa": "Salasanat eivät täsmää."
+}

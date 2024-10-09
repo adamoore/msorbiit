@@ -5,7 +5,7 @@ $kentat = ['etunimi','sukunimi','email','password','password2'];
 $kentat_suomi = ['etunimi','sukunimi','email','salasana','salasana'];
 $pakolliset = ['etunimi','sukunimi','email','password','password2'];
 $kentat_tiedosto = ['image'];
-$css = 'rekisteröityminen.css';
+$css = 'rekisteroityminen.css';
 
 include "db.php";
 include "debugger.php"

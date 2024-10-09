@@ -1,41 +1,20 @@
 :root {
-    --primary-color: #496E4B; 
-    --secondary-color: #FFFC99;
-    --accent-color: #FFFC99;
-    --background-color: #496E4B;
-    --highlight-color: #DD992C;
+    --primary-color: #72004e; 
+    --secondary-color: #ff6fe7; 
+    --accent-color: #daf544;
+    --background-color: #c165d8;
+    --highlight-color: #b843ae;
 }
+
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Unlock', serif;
-    font-size: 45px;
-    text-align: center;
-}
-
-.info {
-    background-color: #A7DDAC;
-    color: #496E4B;
-    padding: 10px;
-    text-align: center;
-    border: 3px solid #FFFC99;
-    border-radius: 30px;
-}
-
-.toniannika {
-    border: 3px solid #133667;
-    border-radius: 30px;
-    background-color: #A7DDAC;
 }
 
 nav {
     font-family: "MedievalSharp", cursive;
     font-weight: 600;
     font-style: normal;
-    text-decoration: none;
-}
-
-a {
-    color: var(--primary-color);
     text-decoration: none;
 }
 
@@ -70,6 +49,22 @@ nav ul li {
     text-decoration: none;
 }
 
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+}   
+
+.info {
+    background-color: #72004e;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.tiktok-embed {
+    border-radius: 30px;
+    background-color: #b843ae;
+}
+
 .nappi {
     margin-right: 10px;
     padding: 10px 20px;
@@ -90,7 +85,9 @@ nav ul li {
 
 footer {
     text-align: center;
-    background: linear-gradient(to top right, #FFFC99, #496E4B);
+    background: linear-gradient(to top right, #ff47ff, #000000); 
+    color: rgb(219, 225, 233);
+    padding: 30px;
 }
 
 .ikonit {
@@ -113,7 +110,7 @@ footer {
 }
 
 .theater-background {
-    background-image: url('/msorbiit2.jpg');
+    background-image: url('/rink.jpg');
     background-size: cover;
     background-position: center;
     height: 100vh;
