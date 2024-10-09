@@ -7,8 +7,9 @@
         <div class="info">
         <h1>REDSVEN'S INK</h1>
         <h2>Kelluva tatuointistudio</h2>
-        <p> Tervetuloa Redsven's Ink tatuointistudioon! Olemme kelluva tatuointistudio, joka tarjoaa laadukkaita tatuointeja.
-            joten voit valita juuri sinulle sopivan vaihtoehdon. 
+        <p> Tervetuloa Redsven's Ink tatuointistudioon! <br>
+            Olemme kelluva tatuointistudio, joka tarjoaa laadukkaita tatuointeja.
+            Voit valita juuri sinulle sopivan vaihtoehdon. 
             Tatuointistudiomme sijaitsee M/S Orbiit -laivalla, joka on tunnettu laadukkaista palveluistaan ja ystävällisestä henkilökunnastaan. 
             Tervetuloa tutustumaan tatuointistudiomme tarjontaan ja varaamaan aikasi!</p>
             <br>

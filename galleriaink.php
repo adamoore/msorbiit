@@ -12,12 +12,17 @@
 	<style>
 		.carousel-inner > .item > img {
 			width: 50%;
-			height: 100vh;
+			height: 70vh;
 			border-radius: 50px;
 			border: 5px solid #72004e;
 			margin: auto;
 			background-color: #c165d8;
-		}
+		    }
+        a {
+            color: #daf544;
+            text-decoration: none;
+            font-size: 16px;
+        }
 	</style>
 </head>
 <body>

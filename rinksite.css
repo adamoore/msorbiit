@@ -6,7 +6,6 @@
     --highlight-color: #b843ae;
 }
 
-
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Unlock', serif;
 }
@@ -75,12 +74,12 @@ a {
 
 .calendar {
     float: center;
-    border: 5px solid #FFFC99;
+    border: 5px solid #72004e;
 }
 
 .day {
-    background-color: #A7DDAC;
-    color: #133667;
+    background-color: #c165d8;
+    color: #daf544;
 }
 
 footer {
