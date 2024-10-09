@@ -53,5 +53,7 @@ elseif (SAHKOPOSTIPALVELU == 'mailtrap'){
     define("EMAIL_PASSWORD",$password_mailtrap);
     //debuggeri("username:".USERNAME.",password:".PASSWORD);
     }
+
+    include_once 'virheilmoitukset.php';
  
 ?>

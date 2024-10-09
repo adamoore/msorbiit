@@ -116,6 +116,7 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
         if ($conn->connect_error) {
             die("Yhteys epäonnistui: " . $conn->connect_error);
         }
+
         // Hae POST-data
         $tapahtumat = $_POST['tapahtumat'] ??''; // Tapahtumat
         $vapaat_ajat = $_POST['vapaat_ajat'] ?? ''; // Vapaat ajat
