@@ -139,6 +139,8 @@ footer {
     background-size: cover;
     background-position: center;
     height: 100vh;
-    filter: drop-shadow(20px 20px 20px rgba(124, 1, 247, 0.2)); /* Varjostus */
+    transition: transform 0.3s, box-shadow 0.3s;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
     border-radius: 10px;
 }
