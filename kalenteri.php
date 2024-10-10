@@ -1,10 +1,12 @@
-<?php include 'header.php'; ?>
+<?php 
+include 'debuggeri.php';
+include 'header.php'; ?>
 <?php
 date_default_timezone_set('Europe/Helsinki');
 $currentMonth = date('F Y');
 $daysInMonth = date('t');
 $weekdays = ['Ma', 'Ti', 'Ke', 'To', 'Pe', 'La', 'Su'];
-
+$tapahtumat = [];
 // Aseta oletuskuukausi ja -vuosi
 $month = date('m');
 $year = date('Y');
@@ -23,7 +25,7 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
 }
         // Hae nykyinen päivämäärä
         $date = date('Y-m-d');
-        $paivamaara = date('d-m-Y');
+        $paivamaara = date('d.m.Y');
         
         // Generoi kalenterin sisältö
         $first_day_of_month = mktime(0, 0, 0, $month, 1, $year); //tarkista tämän yhteensopivuus kalenterin kanssa
@@ -45,7 +47,7 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
             '12-25' => 'Joulupäivä',
             '12-26' => 'Tapaninpäivä'
         ];
-        //Tarvitseeko näihin määrittää pp-kk-vv?
+
         // Funktio kiinteiden pyhäpäivien laskemiseksi
         function getFixedHolidays($year) {
             $holidays = [
@@ -116,34 +118,32 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
         if ($conn->connect_error) {
             die("Yhteys epäonnistui: " . $conn->connect_error);
         }
-
-        // Hae POST-data
-        $tapahtumat = $_POST['tapahtumat'] ??''; // Tapahtumat
-        $vapaat_ajat = $_POST['vapaat_ajat'] ?? ''; // Vapaat ajat
-
+            
             // Näytä tapahtumat
-            $sql = "SELECT tapahtumat FROM tapahtumat WHERE paivamaara='$date'";
+            $sql = "SELECT paivamaara, tapahtumat FROM tapahtumat";
+            debuggeri($sql);
             $result = $conn->query($sql);
             if ($result && $result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
+                    $tapahtumat[$row['paivamaara']] = $row['tapahtumat'];
                     echo "<div class='tapahtumat'>" . $row['tapahtumat'] . "</div>";
                 }
             }
+            debuggeri($tapahtumat);
 
+            $vapaat_ajat=[];
             // Näytä vapaat ajat
-            $sql = "SELECT vapaat_ajat FROM vapaat_ajat WHERE paivamaara='$date'";
+            $sql = "SELECT paivamaara, vapaat_ajat FROM vapaat_ajat";
+            debuggeri($sql);
             $result = $conn->query($sql);
-
+            
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
+                    $vapaat_ajat[$row['paivamaara']] = $row['vapaat_ajat'];
                     echo "<div class='vapaat_ajat'>" . $row['vapaat_ajat'] . "</div>";
                 }
             }
-
-            // Näytä pyhät ja juhlat
-            //if (array_key_exists($paivamaara, $holidays)) {
-              //  echo "<div class='holiday'>" . $holidays[$paivamaara] . "</div>";
-            //}
+            debuggeri($vapaat_ajat);
 
             // Näytä pyhät ja juhlat v.2UUSI
             if (array_key_exists(date('m-d', strtotime($date)), $holidays)) {
@@ -197,9 +197,13 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
                 <?php for ($day = 1; $day <= $daysInMonth; $day++): ?>
                     <?php
                     $class = 'day';
-                    if (is_array($vapaat_ajat) && in_array($paivamaara, $vapaat_ajat)) {
+                    $date = sprintf('%04d-%02d-%02d', $year, $month, $day);
+                    debuggeri($date);
+                    if (is_array($vapaat_ajat) && array_key_exists($date, $vapaat_ajat)) {
+                        debuggeri("date=$date");
                         $class .= ' vapaat_ajat';
-                    } elseif (is_array($tapahtumat) && in_array($paivamaara, $tapahtumat)) {
+                    } elseif (is_array($tapahtumat) && array_key_exists($date, $tapahtumat)) {
+                        debuggeri("date=$date");
                         $class .= ' tapahtumat';
                     }
                     if (pyha($month, $day)) {
@@ -207,7 +211,7 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
                     }
                     ?>
                     <button class='<?php echo $class; ?>' onclick='showTimeslots(<?php echo $day; ?>)'>
-                        <?php echo $day; ?>
+                        <?php echo $day."<br>".($vapaat_ajat[$date] ?? ""); $day."<br>".($tapahtumat[$date] ?? "");?>
                     </button>
                 <?php endfor; ?>
         </div>

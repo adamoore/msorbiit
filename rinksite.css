@@ -18,7 +18,7 @@ nav {
 }
 
 nav a:hover {
-    color: #b843ae;
+    color: #ff47ff;
     text-decoration: none;
 }
 
@@ -104,7 +104,8 @@ a {
 footer {
     text-align: center;
     background: linear-gradient(to top right, #ff47ff, #000000); 
-    color: rgb(219, 225, 233);
+    color: #daf544;
+    font-family: 'Unlock', serif;
     padding: 30px;
     filter: drop-shadow(20px 20px 20px rgba(124, 1, 247, 0.2)); /* Varjostus */
     border-radius: 10px;
@@ -135,10 +136,10 @@ footer {
 }
 
 .theater-background {
-    background-image: url('/rink.jpg');
+    background-image: url('msorbiitkuvat/rink.jpg');
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    height: 80vh;
     transition: transform 0.3s, box-shadow 0.3s;
     transform: scale(1.1);
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
