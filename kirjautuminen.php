@@ -45,15 +45,14 @@ $conn->close();
 </head>
 <body>
     <h1>Kirjaudu</h1>
-    <form action="kirjautuminen.php" method="post">
-        <label for="username">Käyttäjätunnus:</label>
+    <form action="kirjautuminen.php" method="post" class="info">
+        <label for="username">Käyttäjätunnus:</label><br>
         <input type="text" id="username" name="username" required><br>
         <p>Käyttäjätunnuksesi on sähköpostiosoitteesi. Jos sinulla ei ole käyttäjätunnusta, rekisteröidythän ensin.</p>
-        <label for="password">Salasana:</label>
+        <label for="password">Salasana:</label> <br>
         <input type="password" id="password" name="password" required><br>
-        <p>Salasanasi on se, jonka annoit rekisteröityessäsi.</p>
-        <input type="submit" value="Kirjaudu" class="nappi" name="painike">
-        <input type = "submit" value="Rekisteröidy" class="nappi" name="painike"><br>
+        <p>Salasanasi on se, jonka annoit rekisteröityessäsi.</p> <br>
+        <input type="submit" value="Kirjaudu" class="nappi" name="painike"><br>
         <a href="reset_password.php">Unohditko salasanasi?</a>
     </form>
 </body>

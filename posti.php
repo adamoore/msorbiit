@@ -1,6 +1,6 @@
 <?php
 // Sisällytä tietokannan kirjautumistiedot
-include 'tunnukset.php';
+//include 'tunnukset.php';
 
 // Tarkista, onko lomake lähetetty
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

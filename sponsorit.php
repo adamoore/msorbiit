@@ -22,7 +22,7 @@
             Merenkulkua, laivoja, teatteria sekä merihistoriaa. <br>
             Heidän palvelut löydät täältä: </p> <br>
 
-            <a href="www.SUUKKO2.fi">ALUS MS-SUUKKO II</a>
+            <a href="https://www.SUUKKO2.fi">ALUS MS-SUUKKO II</a>
             <br>
             <a href="https://www.youtube.com/channel/UCHO3MiAqmKFGpXtfvHnR0Gg">Youtube linkki</a>
         </div>

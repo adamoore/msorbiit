@@ -18,6 +18,7 @@
 </div> 
 <br>    
 <footer>
+        <br>
         <p>&copy; 2024 MS-Orbiit</p>
         <p><?php echo date('d.m.Y H:i:s'); ?></p>
 </footer>

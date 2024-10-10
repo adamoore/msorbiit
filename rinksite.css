@@ -17,6 +17,23 @@ nav {
     text-decoration: none;
 }
 
+nav a:hover {
+    color: #b843ae;
+    text-decoration: none;
+}
+
+/* Aktiivisen sivun korostus */
+nav .active a {
+    background-color: #ff6fe7;
+    color: #72004e;
+    text-decoration: none;
+}
+
+nav a:active {
+    background-color: #000000;
+    text-decoration: none;
+}
+
 body {
     margin: 10;
     padding: 10;
@@ -40,6 +57,8 @@ nav ul{
     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
     border-bottom: 2px solid var(--primary-color);
     text-decoration: none;
+    filter: drop-shadow(15px 15px 15px rgba(2, 2, 2, 0.2)); /* Varjostus */
+    border-radius: 10px;
 }
 
 nav ul li {
@@ -87,18 +106,25 @@ footer {
     background: linear-gradient(to top right, #ff47ff, #000000); 
     color: rgb(219, 225, 233);
     padding: 30px;
+    filter: drop-shadow(20px 20px 20px rgba(124, 1, 247, 0.2)); /* Varjostus */
+    border-radius: 10px;
 }
 
 .ikonit {
     max-width: 100px;
     height: 100px;
     margin: 50px;
+    border-radius: 50px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
 }
 
 .footer-icons {
     display: flex;
     justify-content: center;
     padding: 10px 0;
+    filter: drop-shadow(30px 30px 30px rgba(5, 5, 5, 0.2)); /* Varjostus */
 }
 
 .footer-icons a {
@@ -113,4 +139,6 @@ footer {
     background-size: cover;
     background-position: center;
     height: 100vh;
+    filter: drop-shadow(20px 20px 20px rgba(124, 1, 247, 0.2)); /* Varjostus */
+    border-radius: 10px;
 }

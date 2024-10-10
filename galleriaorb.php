@@ -1,5 +1,3 @@
-<?php include 'header.php'; ?>
-
 <!DOCTYPE html>
 <html lang="fi">
 <head>
@@ -7,16 +5,46 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Galleria</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="site.css">
+	<?php include 'header.php'; ?>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<style>
 		.carousel-inner > .item > img {
-			width: 75%;
+			width: auto;
 			height: 150vh;
 			border-radius: 50px;
 			border: 5px solid #133667;
 			margin: auto;
 			background-color: #496E4B;
+		}
+		
+		nav a:hover {
+    	color: #133667;
+    	text-decoration: none;
+		}
+
+		/* Aktiivisen sivun korostus */
+		nav .active a {
+    	background-color: #A7DDAC;
+    	color: #133667;
+    	text-decoration: none;
+		}
+
+		nav a:active {
+    	background-color: #A7DDAC;
+    	text-decoration: none;
+		}
+
+		a {
+    	color: #FFFC99;
+    	text-decoration: none;
+		}
+
+		footer {
+    	text-align: center;
+    	background: linear-gradient(to top right,#081a18,#3d9754);
+		color: #FFFC99;
 		}
 	</style>
 </head>
@@ -85,6 +113,6 @@
 		<span class="sr-only">Next</span>
 	</a>
 </div>
+<?php include 'footer.php'; ?>
 </body>
 </html>
-<?php include 'footer.php'; ?>

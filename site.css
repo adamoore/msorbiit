@@ -4,6 +4,8 @@
     --accent-color: #FFFC99;
     --background-color: #496E4B;
     --highlight-color: #DD992C;
+    --nav-background-color-start: rgb(134, 195, 255);
+    --nav-background-color-end: #2a2ca0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -21,6 +23,14 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 30px;
 }
 
+.lomake {
+    background-color: #A7DDAC;
+    color: #2a2ca0;
+    padding: 10px;
+    text-align: center;
+    border: 3px solid #FFFC99;
+    border-radius: 30px;}
+
 .toniannika {
     border: 3px solid #133667;
     border-radius: 30px;
@@ -34,8 +44,25 @@ nav {
     text-decoration: none;
 }
 
+nav a:hover {
+    color: #133667;
+    text-decoration: none;
+}
+
+/* Aktiivisen sivun korostus */
+nav .active a {
+    background-color: #A7DDAC;
+    color: #133667;
+    text-decoration: none;
+}
+
+nav a:active {
+    background-color: #A7DDAC;
+    text-decoration: none;
+}
+
 a {
-    color: var(--primary-color);
+    color: #FFFC99;
     text-decoration: none;
 }
 
@@ -59,9 +86,11 @@ nav ul{
     margin: 0;
     display: flex;
     justify-content: space-around;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    background: linear-gradient(90deg, var(--nav-background-color-start), var(--nav-background-color-end));
     border-bottom: 2px solid var(--primary-color);
     text-decoration: none;
+    filter: drop-shadow(15px 15px 15px rgba(2, 2, 2, 0.2)); /* Varjostus */
+    border-radius: 10px;
 }
 
 nav ul li {
@@ -90,19 +119,27 @@ nav ul li {
 
 footer {
     text-align: center;
-    background: linear-gradient(to top right, #FFFC99, #496E4B);
+    background: linear-gradient(to top right,#081a18,#3d9754);
+    height: 100px;
+    border-radius: 10px;
 }
 
 .ikonit {
     max-width: 100px;
     height: 100px;
     margin: 50px;
+    border-radius: 50px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
 }
 
 .footer-icons {
     display: flex;
     justify-content: center;
     padding: 10px 0;
+    filter: drop-shadow(30px 30px 30px rgba(5, 5, 5, 0.2)); /* Varjostus */
+    
 }
 
 .footer-icons a {
@@ -117,4 +154,6 @@ footer {
     background-size: cover;
     background-position: center;
     height: 100vh;
+    border-radius: 10px;
+    filter: drop-shadow(20px 20px 20px rgba(124, 1, 247, 0.2)); /* Varjostus */
 }

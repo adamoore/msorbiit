@@ -1,8 +1,8 @@
-<?php include 'header.php';
+<?php 
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "vieraskirja";
+$dbname = "kalenteri";
 
 // Luo yhteys
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Korvaa hymiöiden lyhenteet Unicode-hymiöillä
     $viesti = str_replace(array_keys($emojis), array_values($emojis), $viesti);
 
-    $sql = "INSERT INTO viestit (nimi, viesti) VALUES ('$nimi', '$viesti')";
+    $sql = "INSERT INTO vieraskirja (nimi, viesti) VALUES ('$nimi', '$viesti')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Viesti lisätty onnistuneesti!";
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Hae kaikki viestit
-$sql = "SELECT nimi, viesti, aika FROM viestit ORDER BY aika DESC";
+$sql = "SELECT nimi, viesti, aika FROM vieraskirja ORDER BY aika DESC";
 $result = $conn->query($sql);
 
 $conn->close();
@@ -57,6 +57,8 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vieraskirja</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="site.css">
+    <?php include 'header.php'; ?>
 </head>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

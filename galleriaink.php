@@ -1,5 +1,3 @@
-<?php include 'rinkheader.php'; ?>
-
 <!DOCTYPE html>
 <html lang="fi">
 <head>
@@ -7,12 +5,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Galleria</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="rinksite.css">
+	<?php include 'rinkheader.php'; ?>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<style>
 		.carousel-inner > .item > img {
-			width: 50%;
-			height: 70vh;
+			width: auto;
+			height: 80vh;
 			border-radius: 50px;
 			border: 5px solid #72004e;
 			margin: auto;

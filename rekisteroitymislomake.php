@@ -100,10 +100,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!-- Bootstrap CSS -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom CSS -->
-<link href="rekisteroityminen.css" rel="stylesheet">
+<link href="site.css" rel="stylesheet">
+<?php include "header.php"; ?>
 </head>
 <body>
-<form method="post" class="mb-3 needs-validation" enctype="multipart/form-data" novalidate>
+<form method="post" class="mb-3 needs-validation lomake" enctype="multipart/form-data" novalidate>
 <fieldset>
 <legend>Rekisteröityminen</legend>
 <div class="container">
