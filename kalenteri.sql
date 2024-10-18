@@ -2,9 +2,6 @@
 CREATE DATABASE IF NOT EXISTS kalenteri;
 USE kalenteri;
 
--- Aikavyöhykkeen asettaminen
---SET GLOBAL time_zone = 'Europe/Helsinki';
-
 -- Taulun `users` luominen
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -19,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `role` varchar(50) DEFAULT NULL,
   `aktiivinen` tinyint(1) DEFAULT 1,
   `kuva` varchar(255) DEFAULT NULL,
-  `paivitetty` datetime DEFAULT CURRENT ON UPDATE CURRENT_TIMESTAMP,
+  `paivitetty` datetime,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -35,13 +32,16 @@ CREATE TABLE IF NOT EXISTS `roles` (
 INSERT INTO `roles` (`id`, `name`, `value`) VALUES
 (1, 'user', 1),
 (2, 'mainuser', 2),
-(3, 'admin', 3);
+(3, 'admin', 3)
+ON DUPLICATE KEY UPDATE
+  `name` = VALUES(`name`),
+  `value` = VALUES(`value`);
 
 -- Taulun `tapahtumat` luominen
 CREATE TABLE IF NOT EXISTS `tapahtumat` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nimi` varchar(100) NOT NULL,
-  `kuvaus` text NOT NULL,
+  `tapahtumat` text NOT NULL,
   `paivamaara` date NOT NULL,
   `aika` time NOT NULL,
   `luotu` datetime NOT NULL,
@@ -98,15 +98,11 @@ CREATE TABLE IF NOT EXISTS `signup_tokens` (
   FOREIGN KEY (`kayttajatunnus`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Lisää sarakkeet `users`-tauluun
-ALTER TABLE `users`
-ADD COLUMN `etunimi` varchar(50) DEFAULT NULL,
-ADD COLUMN `sukunimi` varchar(50) DEFAULT NULL,
-ADD COLUMN `puhelinnumero` varchar(15) DEFAULT NULL,
-ADD COLUMN `aktiivinen` tinyint(1) DEFAULT 1;
-
--- Lisää sarake `aktiivinen` `roles`-tauluun
-ALTER TABLE `roles`
-ADD COLUMN `aktiivinen` tinyint(1) DEFAULT 1;
-
-COMMIT;
+-- Taulun `vieraskirja` luominen
+CREATE TABLE IF NOT EXISTS `vieraskirja` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nimi` varchar(100) NOT NULL,
+  `viesti` text NOT NULL,
+  `aika` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
